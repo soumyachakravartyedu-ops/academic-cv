@@ -124,7 +124,19 @@ jobs:
               end += len('</section>')
               text = text[:start] + section + text[end:]
 
-          # Ensure the navigation contains exactly one Publications link.
+          # Remove any old duplicate Publications sections, keeping only the marked auto-updated one.
+          while text.count('<section class="sec" id="publications">') > 1:
+              first = text.find('<section class="sec" id="publications">')
+              second = text.find('<section class="sec" id="publications">', first + 1)
+              if second == -1:
+                  break
+              end = text.find('</section>', second)
+              if end == -1:
+                  raise SystemExit('Duplicate Publications section closing tag not found')
+              end += len('</section>')
+              text = text[:second] + text[end:]
+
+          # Remove the legacy Latest Publications navigation item if it exists.
           text = text.replace('<a href="#latest-publications">Latest Publications</a>', '')
           p.write_text(text)
           PY
