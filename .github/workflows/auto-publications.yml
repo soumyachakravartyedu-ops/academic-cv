@@ -36,12 +36,14 @@ jobs:
             'https://api.openalex.org/authors/https://orcid.org/0000-0002-3579-9161' \
             -o /tmp/openalex-author.json || echo '{"cited_by_count":null,"summary_stats":{"h_index":null}}' > /tmp/openalex-author.json
 
-      - name: Update publications and metrics
+      - name: Update all academic metrics and publications
         run: |
           python - <<'PY'
           import html, json, re
-          from datetime import datetime
+          from datetime import datetime, date
           from pathlib import Path
+
+          ORCID = '0000-0002-3579-9161'
 
           data = json.loads(Path('/tmp/orcid-works.json').read_text())
           all_works = []
@@ -58,12 +60,12 @@ jobs:
               month = ((pub.get('month') or {}).get('value')) or '01'
               day = ((pub.get('day') or {}).get('value')) or '01'
               try:
-                  date = datetime(int(year), int(month), int(day)) if year else datetime(1900, 1, 1)
+                  pub_date = date(int(year), int(month), int(day)) if year else date(1900, 1, 1)
               except Exception:
-                  date = datetime(1900, 1, 1)
+                  pub_date = date(1900, 1, 1)
 
               journal = ((w.get('journal-title') or {}).get('value')) or ''
-              work_type = (w.get('type') or '').lower()
+              work_type = (w.get('type') or '').strip().lower()
               doi = ''
               for ext in (w.get('external-ids') or {}).get('external-id', []):
                   if (ext.get('external-id-type') or '').lower() == 'doi':
@@ -74,13 +76,17 @@ jobs:
               if key in seen:
                   continue
               seen.add(key)
-              all_works.append({'title': title, 'year': year, 'date': date, 'journal': journal, 'doi': doi, 'url': url, 'type': work_type})
+              all_works.append({
+                  'title': title, 'year': year, 'date': pub_date,
+                  'journal': journal, 'doi': doi, 'url': url, 'type': work_type
+              })
 
           all_works.sort(key=lambda x: x['date'], reverse=True)
-          works = all_works[:10]
+          latest = all_works[:10]
 
+          # ---- Publication cards ----
           cards = []
-          for w in works:
+          for w in latest:
               title = html.escape(w['title'])
               journal = html.escape(w['journal'])
               year = html.escape(str(w['year']))
@@ -97,34 +103,90 @@ jobs:
               card += '</div>'
               cards.append(card)
 
-          # Metrics that can be reliably derived from the public ORCID record.
-          total_works = len(all_works)
-          book_chapters = sum(1 for w in all_works if w['type'] in ('book-chapter', 'book chapter', 'book-chapter'))
+          # ---- Automatic publication counts ----
+          journal_articles = [w for w in all_works if w['type'] == 'journal-article']
+          book_chapters = [w for w in all_works if w['type'] == 'book-chapter']
 
-          # OpenAlex citation/h-index metrics, when available.
+          # Indexing classification for the journals represented in the current ORCID record.
+          # Categories are mutually exclusive: SCIE first, then ESCI, then Scopus-only.
+          scie_journals = {
+              'physica scripta',
+              'materialwissenschaft und werkstofftechnik',
+              'journal of the brazilian society of mechanical sciences and engineering',
+              'materials today communications',
+              'international journal of environmental science and technology',
+              'journal of building engineering',
+              'environmental progress & sustainable energy',
+              'environmental progress and sustainable energy',
+              'materials research express',
+          }
+          esci_journals = {
+              'results in engineering',
+              'engineering research express',
+              'indian journal of history of science',
+          }
+          scopus_only_journals = {
+              'journal of molecular and engineering materials',
+              'suranaree journal of science & technology',
+              'suranaree journal of science and technology',
+          }
+
+          def normalize_journal(name):
+              return re.sub(r'\s+', ' ', name.strip().lower())
+
+          sci_count = 0
+          esci_count = 0
+          scopus_count = 0
+          unclassified_journals = set()
+
+          for w in journal_articles:
+              j = normalize_journal(w['journal'])
+              if j in scie_journals:
+                  sci_count += 1
+              elif j in esci_journals:
+                  esci_count += 1
+              elif j in scopus_only_journals:
+                  scopus_count += 1
+              else:
+                  unclassified_journals.add(w['journal'] or 'Unknown journal')
+
+          # ---- Automatic experience counter ----
+          # The academic/research timeline on the site starts in July 2019.
+          start = date(2019, 7, 1)
+          today = date.today()
+          experience_years = today.year - start.year - ((today.month, today.day) < (start.month, start.day))
+          experience_display = f'{max(0, experience_years)}+'
+
+          # ---- OpenAlex citation and h-index metrics ----
           try:
               oa = json.loads(Path('/tmp/openalex-author.json').read_text())
               citations = oa.get('cited_by_count')
               h_index = (oa.get('summary_stats') or {}).get('h_index')
           except Exception:
-              citations = h_index = None
+              citations = None
+              h_index = None
 
           p = Path('index.html')
           text = p.read_text()
 
-          # Update metric cards by their visible labels without changing the surrounding design.
-          replacements = {
-              'Journal Articles': str(total_works),
-              'Book Chapters': str(book_chapters),
+          # Replace the eight metric cards by label.
+          metrics = {
+              'Experience': experience_display,
+              'Journal Articles': str(len(journal_articles)),
+              'SCI Papers': str(sci_count),
+              'ESCI Papers': str(esci_count),
+              'Scopus Papers': str(scopus_count),
+              'Book Chapters': str(len(book_chapters)),
           }
           if citations is not None:
-              replacements['Citations'] = f'{citations}+'
+              metrics['Citations'] = f'{citations}+'
           if h_index is not None:
-              replacements['h-index'] = str(h_index)
+              metrics['h-index'] = str(h_index)
 
-          for label, value in replacements.items():
+          for label, value in metrics.items():
               pattern = r'<div class="metric"><b>[^<]*</b><span>' + re.escape(label) + r'</span></div>'
-              text, n = re.subn(pattern, f'<div class="metric"><b>{html.escape(value)}</b><span>{label}</span></div>', text, count=1)
+              replacement = f'<div class="metric"><b>{html.escape(value)}</b><span>{label}</span></div>'
+              text, n = re.subn(pattern, replacement, text, count=1)
               if n == 0:
                   print(f'Warning: metric not found: {label}')
 
@@ -145,21 +207,21 @@ jobs:
           start_marker = '<!-- AUTO-PUBLICATIONS-START -->'
           end_marker = '<!-- AUTO-PUBLICATIONS-END -->'
           if start_marker in text and end_marker in text:
-              start = text.index(start_marker)
-              end = text.index(end_marker, start) + len(end_marker)
-              text = text[:start] + section + text[end:]
+              start_i = text.index(start_marker)
+              end_i = text.index(end_marker, start_i) + len(end_marker)
+              text = text[:start_i] + section + text[end_i:]
           else:
               start_tag = '<section class="sec" id="publications">'
-              start = text.find(start_tag)
-              if start == -1:
+              start_i = text.find(start_tag)
+              if start_i == -1:
                   raise SystemExit('Publications section not found')
-              end = text.find('</section>', start)
-              if end == -1:
+              end_i = text.find('</section>', start_i)
+              if end_i == -1:
                   raise SystemExit('Publications section closing tag not found')
-              end += len('</section>')
-              text = text[:start] + section + text[end:]
+              end_i += len('</section>')
+              text = text[:start_i] + section + text[end_i:]
 
-          # Remove any duplicate Publications sections left by the old workflow.
+          # Remove any duplicate Publications sections left by older workflow versions.
           while text.count('<section class="sec" id="publications">') > 1:
               first = text.find('<section class="sec" id="publications">')
               second = text.find('<section class="sec" id="publications">', first + 1)
@@ -168,12 +230,24 @@ jobs:
               end = text.find('</section>', second)
               if end == -1:
                   raise SystemExit('Duplicate Publications section closing tag not found')
-              end += len('</section>')
-              text = text[:second] + text[end:]
+              text = text[:second] + text[end + len('</section>'):]
 
           text = text.replace('<a href="#latest-publications">Latest Publications</a>', '')
           p.write_text(text)
-          print(f'ORCID works: {total_works}; book chapters: {book_chapters}; citations: {citations}; h-index: {h_index}')
+
+          print('=== AUTOMATIC ACADEMIC METRICS ===')
+          print(f'Experience: {experience_display}')
+          print(f'Journal articles: {len(journal_articles)}')
+          print(f'SCI: {sci_count}')
+          print(f'ESCI: {esci_count}')
+          print(f'Scopus-only: {scopus_count}')
+          print(f'Book chapters: {len(book_chapters)}')
+          print(f'Citations: {citations}')
+          print(f'h-index: {h_index}')
+          if unclassified_journals:
+              print('Unclassified journals needing indexing-map review:')
+              for j in sorted(unclassified_journals):
+                  print(f'  - {j}')
           PY
 
       - name: Commit updated website
@@ -184,6 +258,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No website changes detected.'
           else
-            git commit -m 'chore: sync publications and metrics'
+            git commit -m 'chore: sync all academic metrics'
             git push
           fi
