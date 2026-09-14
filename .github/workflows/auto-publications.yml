@@ -31,12 +31,10 @@ jobs:
             -o /tmp/orcid-works.json
 
       - name: Update website publication section
-        env:
-          ORCID_ID: '0000-0002-3579-9161'
         run: |
           python - <<'PY'
-          import html, json, re
-          from datetime import datetime, timezone
+          import html, json
+          from datetime import datetime
           from pathlib import Path
 
           data = json.loads(Path('/tmp/orcid-works.json').read_text())
@@ -49,13 +47,14 @@ jobs:
                   continue
               w = summaries[0]
               title = ((w.get('title') or {}).get('title') or {}).get('value') or 'Untitled work'
-              year = (((w.get('publication-date') or {}).get('year') or {}).get('value')) or ''
-              month = (((w.get('publication-date') or {}).get('month') or {}).get('value')) or '01'
-              day = (((w.get('publication-date') or {}).get('day') or {}).get('value')) or '01'
+              pub = w.get('publication-date') or {}
+              year = ((pub.get('year') or {}).get('value')) or ''
+              month = ((pub.get('month') or {}).get('value')) or '01'
+              day = ((pub.get('day') or {}).get('value')) or '01'
               try:
-                  date = datetime(int(year), int(month), int(day)) if year else datetime(1900,1,1)
+                  date = datetime(int(year), int(month), int(day)) if year else datetime(1900, 1, 1)
               except Exception:
-                  date = datetime(1900,1,1)
+                  date = datetime(1900, 1, 1)
 
               journal = ((w.get('journal-title') or {}).get('value')) or ''
               doi = ''
@@ -64,7 +63,7 @@ jobs:
                       doi = ext.get('external-id-value') or ''
                       break
               url = ((w.get('url') or {}).get('value')) or ''
-              key = (doi.lower().strip() if doi else title.lower().strip())
+              key = doi.lower().strip() if doi else title.lower().strip()
               if key in seen:
                   continue
               seen.add(key)
@@ -78,7 +77,10 @@ jobs:
               title = html.escape(w['title'])
               journal = html.escape(w['journal'])
               year = html.escape(str(w['year']))
-              card = f'<div class="pub"><div class="pt">{title}</div><div class="pm">{journal}' + (f' · {year}' if year else '') + '</div>'
+              card = f'<div class="pub"><div class="pt">{title}</div><div class="pm">{journal}'
+              if year:
+                  card += f' · {year}'
+              card += '</div>'
               if w['doi']:
                   doi = html.escape(w['doi'])
                   card += f'<a class="doi" href="https://doi.org/{doi}" target="_blank">DOI: {doi} ↗</a>'
@@ -88,29 +90,42 @@ jobs:
               card += '</div>'
               cards.append(card)
 
-          updated = datetime.now(timezone.utc).strftime('%d %B %Y, %H:%M UTC')
+          updated = datetime.utcnow().strftime('%d %B %Y, %H:%M UTC')
           section = (
-              '<!-- AUTO-PUBLICATIONS-START -->'
-              '<section class="sec" id="latest-publications"><div class="wrap">'
-              '<h2>Latest Publications <span style="font-size:.7em;color:var(--muted);font-weight:500">(auto-updated)</span></h2>'
-              f'<p style="color:var(--muted);font-size:.85rem">Automatically synchronized from the public ORCID record · Last checked {updated}</p>'
-              '<div class="pubs">' + ''.join(cards) + '</div>'
-              '<p style="color:var(--muted);font-size:.8rem;margin-top:14px">Source: ORCID · Updates automatically each day.</p>'
-              '</div></section>'
+              '<!-- AUTO-PUBLICATIONS-START -->\n'
+              '<section class="sec" id="publications">\n'
+              '<div class="wrap">\n'
+              '<h2>Publications <span style="font-size:.7em;color:var(--muted);font-weight:500">(auto-updated)</span></h2>\n'
+              f'<p style="color:var(--muted);font-size:.85rem">Automatically synchronized from the public ORCID record · Last checked {updated}</p>\n'
+              '<div class="pubs">' + ''.join(cards) + '</div>\n'
+              '<p style="color:var(--muted);font-size:.8rem;margin-top:14px">Source: ORCID · Updates automatically each day.</p>\n'
+              '</div>\n'
+              '</section>\n'
               '<!-- AUTO-PUBLICATIONS-END -->'
           )
 
           p = Path('index.html')
           text = p.read_text()
-          pattern = r'<!-- AUTO-PUBLICATIONS-START -->.*?<!-- AUTO-PUBLICATIONS-END -->'
-          if re.search(pattern, text, flags=re.S):
-              text = re.sub(pattern, section, text, flags=re.S)
+          start_marker = '<!-- AUTO-PUBLICATIONS-START -->'
+          end_marker = '<!-- AUTO-PUBLICATIONS-END -->'
+
+          if start_marker in text and end_marker in text:
+              start = text.index(start_marker)
+              end = text.index(end_marker, start) + len(end_marker)
+              text = text[:start] + section + text[end:]
           else:
-              marker = '<section class="sec" id="publications">'
-              if marker not in text:
-                  raise SystemExit('Publications section marker not found')
-              text = text.replace(marker, section + marker, 1)
-          text = text.replace('<a href="#publications">Publications</a>', '<a href="#latest-publications">Latest Publications</a><a href="#publications">Publications</a>', 1)
+              start_tag = '<section class="sec" id="publications">'
+              start = text.find(start_tag)
+              if start == -1:
+                  raise SystemExit('Publications section not found')
+              end = text.find('</section>', start)
+              if end == -1:
+                  raise SystemExit('Publications section closing tag not found')
+              end += len('</section>')
+              text = text[:start] + section + text[end:]
+
+          # Ensure the navigation contains exactly one Publications link.
+          text = text.replace('<a href="#latest-publications">Latest Publications</a>', '')
           p.write_text(text)
           PY
 
@@ -122,6 +137,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No publication changes detected.'
           else
-            git commit -m 'chore: sync latest publications from ORCID'
+            git commit -m 'chore: sync publications from ORCID'
             git push
           fi
