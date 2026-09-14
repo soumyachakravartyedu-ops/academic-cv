@@ -30,15 +30,21 @@ jobs:
             'https://pub.orcid.org/v3.0/0000-0002-3579-9161/works' \
             -o /tmp/orcid-works.json
 
-      - name: Update website publication section
+      - name: Fetch OpenAlex author metrics
+        run: |
+          curl --fail --retry 3 -L \
+            'https://api.openalex.org/authors/https://orcid.org/0000-0002-3579-9161' \
+            -o /tmp/openalex-author.json || echo '{"cited_by_count":null,"summary_stats":{"h_index":null}}' > /tmp/openalex-author.json
+
+      - name: Update publications and metrics
         run: |
           python - <<'PY'
-          import html, json
+          import html, json, re
           from datetime import datetime
           from pathlib import Path
 
           data = json.loads(Path('/tmp/orcid-works.json').read_text())
-          works = []
+          all_works = []
           seen = set()
 
           for group in data.get('group', []):
@@ -57,6 +63,7 @@ jobs:
                   date = datetime(1900, 1, 1)
 
               journal = ((w.get('journal-title') or {}).get('value')) or ''
+              work_type = (w.get('type') or '').lower()
               doi = ''
               for ext in (w.get('external-ids') or {}).get('external-id', []):
                   if (ext.get('external-id-type') or '').lower() == 'doi':
@@ -67,10 +74,10 @@ jobs:
               if key in seen:
                   continue
               seen.add(key)
-              works.append({'title': title, 'year': year, 'date': date, 'journal': journal, 'doi': doi, 'url': url})
+              all_works.append({'title': title, 'year': year, 'date': date, 'journal': journal, 'doi': doi, 'url': url, 'type': work_type})
 
-          works.sort(key=lambda x: x['date'], reverse=True)
-          works = works[:10]
+          all_works.sort(key=lambda x: x['date'], reverse=True)
+          works = all_works[:10]
 
           cards = []
           for w in works:
@@ -90,6 +97,37 @@ jobs:
               card += '</div>'
               cards.append(card)
 
+          # Metrics that can be reliably derived from the public ORCID record.
+          total_works = len(all_works)
+          book_chapters = sum(1 for w in all_works if w['type'] in ('book-chapter', 'book chapter', 'book-chapter'))
+
+          # OpenAlex citation/h-index metrics, when available.
+          try:
+              oa = json.loads(Path('/tmp/openalex-author.json').read_text())
+              citations = oa.get('cited_by_count')
+              h_index = (oa.get('summary_stats') or {}).get('h_index')
+          except Exception:
+              citations = h_index = None
+
+          p = Path('index.html')
+          text = p.read_text()
+
+          # Update metric cards by their visible labels without changing the surrounding design.
+          replacements = {
+              'Journal Articles': str(total_works),
+              'Book Chapters': str(book_chapters),
+          }
+          if citations is not None:
+              replacements['Citations'] = f'{citations}+'
+          if h_index is not None:
+              replacements['h-index'] = str(h_index)
+
+          for label, value in replacements.items():
+              pattern = r'<div class="metric"><b>[^<]*</b><span>' + re.escape(label) + r'</span></div>'
+              text, n = re.subn(pattern, f'<div class="metric"><b>{html.escape(value)}</b><span>{label}</span></div>', text, count=1)
+              if n == 0:
+                  print(f'Warning: metric not found: {label}')
+
           updated = datetime.utcnow().strftime('%d %B %Y, %H:%M UTC')
           section = (
               '<!-- AUTO-PUBLICATIONS-START -->\n'
@@ -104,11 +142,8 @@ jobs:
               '<!-- AUTO-PUBLICATIONS-END -->'
           )
 
-          p = Path('index.html')
-          text = p.read_text()
           start_marker = '<!-- AUTO-PUBLICATIONS-START -->'
           end_marker = '<!-- AUTO-PUBLICATIONS-END -->'
-
           if start_marker in text and end_marker in text:
               start = text.index(start_marker)
               end = text.index(end_marker, start) + len(end_marker)
@@ -124,7 +159,7 @@ jobs:
               end += len('</section>')
               text = text[:start] + section + text[end:]
 
-          # Remove any old duplicate Publications sections, keeping only the marked auto-updated one.
+          # Remove any duplicate Publications sections left by the old workflow.
           while text.count('<section class="sec" id="publications">') > 1:
               first = text.find('<section class="sec" id="publications">')
               second = text.find('<section class="sec" id="publications">', first + 1)
@@ -136,19 +171,19 @@ jobs:
               end += len('</section>')
               text = text[:second] + text[end:]
 
-          # Remove the legacy Latest Publications navigation item if it exists.
           text = text.replace('<a href="#latest-publications">Latest Publications</a>', '')
           p.write_text(text)
+          print(f'ORCID works: {total_works}; book chapters: {book_chapters}; citations: {citations}; h-index: {h_index}')
           PY
 
-      - name: Commit updated publications
+      - name: Commit updated website
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html
           if git diff --cached --quiet; then
-            echo 'No publication changes detected.'
+            echo 'No website changes detected.'
           else
-            git commit -m 'chore: sync publications from ORCID'
+            git commit -m 'chore: sync publications and metrics'
             git push
           fi
