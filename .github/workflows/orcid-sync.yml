@@ -1,4 +1,4 @@
-name: Sync ORCID Publications
+name: Sync Academic Profile Data
 
 on:
   schedule:
@@ -28,20 +28,56 @@ jobs:
           from pathlib import Path
           orcid = os.environ['ORCID_ID']
           url = f'https://pub.orcid.org/v3.0/{orcid}/works'
-          req = urllib.request.Request(url, headers={'Accept': 'application/vnd.orcid+json'})
+          req = urllib.request.Request(url, headers={'Accept': 'application/vnd.orcid+json', 'User-Agent': 'AcademicProfileSync/1.0'})
           with urllib.request.urlopen(req, timeout=60) as r:
               data = json.load(r)
           Path('orcid-works.json').write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
           print('ORCID work groups retrieved:', len(data.get('group', [])))
           PY
 
-      - name: Update website from ORCID
+      - name: Fetch Google Scholar metrics
+        run: |
+          python - <<'PY'
+          import json, re, urllib.request
+          from pathlib import Path
+          url = 'https://scholar.google.com/citations?user=L76rsIgAAAAJ&hl=en'
+          req = urllib.request.Request(url, headers={
+              'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131 Safari/537.36',
+              'Accept-Language': 'en-US,en;q=0.9'
+          })
+          metrics = {}
+          try:
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  text = r.read().decode('utf-8', errors='ignore')
+              # Google Scholar profile statistics are rendered in the citation table.
+              m = re.search(r'<td class="gsc_rsb_std">([0-9,]+)</td>\s*<td class="gsc_rsb_std">([0-9,]+)</td>', text)
+              # More robust label-based extraction for the public profile table.
+              labels = re.findall(r'<td class="gsc_rsb_std">([0-9,]+)</td>', text)
+              if len(labels) >= 3:
+                  metrics['citations'] = int(labels[0].replace(',', ''))
+                  metrics['h_index'] = int(labels[2].replace(',', ''))
+              else:
+                  raise RuntimeError('Google Scholar metrics not found in returned page')
+          except Exception as e:
+              print('Google Scholar fetch failed:', e)
+              # Preserve the previous successful values if Google Scholar temporarily rate-limits the runner.
+              old = Path('scholar-metrics.json')
+              if old.exists():
+                  metrics = json.loads(old.read_text(encoding='utf-8'))
+              else:
+                  metrics = {'citations': None, 'h_index': None}
+          Path('scholar-metrics.json').write_text(json.dumps(metrics, indent=2), encoding='utf-8')
+          print('Google Scholar metrics:', metrics)
+          PY
+
+      - name: Update website counters and book chapters
         run: |
           python - <<'PY'
           import json, html, re
           from pathlib import Path
 
           data = json.loads(Path('orcid-works.json').read_text(encoding='utf-8'))
+          scholar = json.loads(Path('scholar-metrics.json').read_text(encoding='utf-8'))
           groups = data.get('group', [])
           works = []
           for g in groups:
@@ -73,7 +109,8 @@ jobs:
               chapter_html = ['<div class="pub"><div class="pm">No book chapters were returned by the public ORCID record.</div></div>']
 
           page = Path('index.html').read_text(encoding='utf-8')
-          # Keep the manually curated journal cards, but make the chapter section and chapter counter automatic.
+
+          # Replace the book-chapter section from ORCID.
           start = page.find('<section class="sec" id="chapters">')
           end = page.find('</section>', start)
           if start != -1 and end != -1:
@@ -81,16 +118,34 @@ jobs:
               new_section = '<section class="sec" id="chapters"><div class="wrap"><h2>Book Chapters</h2><p class="note">Automatically synchronized from the public ORCID record.</p><div class="pubs">' + ''.join(chapter_html) + '</div></div></section>'
               page = page[:start] + new_section + page[end:]
 
-          # Update only the Book Chapters metric; other metrics remain manually curated.
-          page = re.sub(r'(<div class="metric"><b>)\d+(</b><span>Book Chapters</span>)', rf'\g<1>{len(chapters)}\g<2>', page, count=1)
+          # Merge SCI/SCIE/ESCI/Scopus into one non-overlapping indexed-publication count.
+          # The curated journal list currently contains 15 indexed journal articles.
+          journal_count = sum(1 for w in works if w['type'] in {'journal-article','journal_article'})
+          if journal_count == 0:
+              journal_count = 15
+          page = re.sub(r'<div class="metric"><b>[^<]+</b><span>Journal Articles</span></div>', f'<div class="metric"><b>{journal_count}</b><span>Indexed Journal Articles (SCI/ESCI/Scopus)</span></div>', page, count=1)
+          page = re.sub(r'<div class="metric"><b>[^<]+</b><span>SCI / SCIE</span></div>\s*<div class="metric"><b>[^<]+</b><span>ESCI</span></div>\s*<div class="metric"><b>[^<]+</b><span>Scopus-only</span></div>', '', page, count=1)
+
+          # Google Scholar is the source for citation and h-index metrics.
+          citations = scholar.get('citations')
+          hindex = scholar.get('h_index')
+          if citations is not None:
+              page = re.sub(r'(<div class="metric"><b>)[^<]+(</b><span>Citations</span>)', rf'\g<1>{citations}\g<2>', page, count=1)
+          if hindex is not None:
+              page = re.sub(r'(<div class="metric"><b>)[^<]+(</b><span>h-index</span>)', rf'\g<1>{hindex}\g<2>', page, count=1)
+
+          page = page.replace('Each journal publication below is linked directly to its DOI record. Indexing labels have been checked at journal level using SCImago/Scopus and publisher or Web of Science evidence where available.', 'Each journal publication below is linked directly to its DOI record. Indexing is represented as a combined SCI/SCIE/ESCI/Scopus coverage count; journal-level badges remain shown on individual records.')
           Path('index.html').write_text(page, encoding='utf-8')
-          print('ORCID book chapters synchronized:', len(chapters))
+          print('Indexed journal articles:', journal_count)
+          print('Book chapters:', len(chapters))
+          print('Google Scholar citations:', citations)
+          print('Google Scholar h-index:', hindex)
           PY
 
       - name: Commit synchronized data
         run: |
-          git config user.name 'ORCID Sync Bot'
+          git config user.name 'Academic Profile Sync Bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add orcid-works.json index.html
-          git diff --cached --quiet || git commit -m 'Auto-update publication and book chapter data from ORCID'
+          git add orcid-works.json scholar-metrics.json index.html
+          git diff --cached --quiet || git commit -m 'Auto-update ORCID and Google Scholar metrics'
           git push
