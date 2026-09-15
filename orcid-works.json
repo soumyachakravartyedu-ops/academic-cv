@@ -1,0 +1,3866 @@
+{
+  "last-modified-date": {
+    "value": 1789412733409
+  },
+  "group": [
+    {
+      "last-modified-date": {
+        "value": 1789412733409
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1007/s43539-026-00207-5",
+            "external-id-normalized": {
+              "value": "10.1007/s43539-026-00207-5",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1007/s43539-026-00207-5"
+            },
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 226689287,
+          "created-date": {
+            "value": 1789412733409
+          },
+          "last-modified-date": {
+            "value": 1789412733409
+          },
+          "source": {
+            "source-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "source-client-id": null,
+            "source-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "A critical review on wootz steel of India"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/s43539-026-00207-5",
+                "external-id-normalized": {
+                  "value": "10.1007/s43539-026-00207-5",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1007/s43539-026-00207-5"
+                },
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "0019-5235",
+                "external-id-normalized": {
+                  "value": "0019-5235",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://portal.issn.org/resource/ISSN/0019-5235"
+                },
+                "external-id-relationship": "part-of"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "2454-9991",
+                "external-id-normalized": {
+                  "value": "2454-9991",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://portal.issn.org/resource/ISSN/2454-9991"
+                },
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://dx.doi.org/10.1007/s43539-026-00207-5"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2026"
+            },
+            "month": {
+              "value": "03"
+            },
+            "day": null
+          },
+          "journal-title": {
+            "value": "Indian Journal of History of Science"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/226689287",
+          "display-index": "0"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1769845842319
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1002/ep.70174",
+            "external-id-normalized": {
+              "value": "10.1002/ep.70174",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1002/ep.70174"
+            },
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 196722609,
+          "created-date": {
+            "value": 1762957457820
+          },
+          "last-modified-date": {
+            "value": 1769845842319
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Using cupola furnace slag in concrete: A sustainable approach to protect natural aggregates and the environment"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1002/ep.70174",
+                "external-id-normalized": {
+                  "value": "10.1002/ep.70174",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1002/ep.70174"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1002/ep.70174"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2026"
+            },
+            "month": {
+              "value": "01"
+            },
+            "day": null
+          },
+          "journal-title": {
+            "value": "Environmental Progress & Sustainable Energy"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/196722609",
+          "display-index": "1"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1762951861557
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1088/2631-8695/adf48d",
+            "external-id-normalized": {
+              "value": "10.1088/2631-8695/adf48d",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1088/2631-8695/adf48d"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-105012565731",
+            "external-id-normalized": {
+              "value": "2-s2.0-105012565731",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 188643002,
+          "created-date": {
+            "value": 1753495360898
+          },
+          "last-modified-date": {
+            "value": 1754593904897
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Fabrication and mechanical characterization of hybrid polymer matrix composites"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1088/2631-8695/adf48d",
+                "external-id-normalized": {
+                  "value": "10.1088/2631-8695/adf48d",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1088/2631-8695/adf48d"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1088/2631-8695/adf48d"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2025"
+            },
+            "month": {
+              "value": "09"
+            },
+            "day": {
+              "value": "30"
+            }
+          },
+          "journal-title": {
+            "value": "Engineering Research Express"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/188643002",
+          "display-index": "1"
+        },
+        {
+          "put-code": 196715175,
+          "created-date": {
+            "value": 1762951861557
+          },
+          "last-modified-date": {
+            "value": 1762951861557
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Fabrication and mechanical characterization of hybrid polymer matrix composites"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1088/2631-8695/adf48d",
+                "external-id-normalized": {
+                  "value": "10.1088/2631-8695/adf48d",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-105012565731",
+                "external-id-normalized": {
+                  "value": "2-s2.0-105012565731",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "26318695",
+                "external-id-normalized": {
+                  "value": "2631-8695",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://www.scopus.com/inward/record.url?eid=2-s2.0-105012565731&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2025"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Engineering Research Express"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/196715175",
+          "display-index": "1"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1757321420351
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1201/9781003499688-6",
+            "external-id-normalized": {
+              "value": "10.1201/9781003499688-6",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1201/9781003499688-6"
+            },
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 191383350,
+          "created-date": {
+            "value": 1757321420351
+          },
+          "last-modified-date": {
+            "value": 1757321420351
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Optimization of Weld Width of Laser-Welded Two Transparent Polymers"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1201/9781003499688-6",
+                "external-id-normalized": {
+                  "value": "10.1201/9781003499688-6",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1201/9781003499688-6"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1201/9781003499688-6"
+          },
+          "type": "book-chapter",
+          "publication-date": {
+            "year": {
+              "value": "2025"
+            },
+            "month": {
+              "value": "09"
+            },
+            "day": {
+              "value": "08"
+            }
+          },
+          "journal-title": null,
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/191383350",
+          "display-index": "1"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1762951861509
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1088/2053-1591/addd68",
+            "external-id-normalized": {
+              "value": "10.1088/2053-1591/addd68",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1088/2053-1591/addd68"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-105007903828",
+            "external-id-normalized": {
+              "value": "2-s2.0-105007903828",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 185374937,
+          "created-date": {
+            "value": 1749062726385
+          },
+          "last-modified-date": {
+            "value": 1749062726385
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Prediction of laser welding qualities of Al alloys using regression and machine learning techniques"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1088/2053-1591/addd68",
+                "external-id-normalized": {
+                  "value": "10.1088/2053-1591/addd68",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1088/2053-1591/addd68"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1088/2053-1591/addd68"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2025"
+            },
+            "month": {
+              "value": "06"
+            },
+            "day": {
+              "value": "01"
+            }
+          },
+          "journal-title": {
+            "value": "Materials Research Express"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/185374937",
+          "display-index": "1"
+        },
+        {
+          "put-code": 196715174,
+          "created-date": {
+            "value": 1762951861509
+          },
+          "last-modified-date": {
+            "value": 1762951861509
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Prediction of laser welding qualities of Al alloys using regression and machine learning techniques"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1088/2053-1591/addd68",
+                "external-id-normalized": {
+                  "value": "10.1088/2053-1591/addd68",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-105007903828",
+                "external-id-normalized": {
+                  "value": "2-s2.0-105007903828",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "20531591",
+                "external-id-normalized": {
+                  "value": "2053-1591",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://www.scopus.com/inward/record.url?eid=2-s2.0-105007903828&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2025"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Materials Research Express"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/196715174",
+          "display-index": "1"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1762951861689
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1088/1402-4896/adc6d1",
+            "external-id-normalized": {
+              "value": "10.1088/1402-4896/adc6d1",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1088/1402-4896/adc6d1"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-105002702069",
+            "external-id-normalized": {
+              "value": "2-s2.0-105002702069",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 181120897,
+          "created-date": {
+            "value": 1743204834632
+          },
+          "last-modified-date": {
+            "value": 1744263116847
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Dry turning behavior of solution heat treated cupola slag reinforced aluminum matrix composites"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1088/1402-4896/adc6d1",
+                "external-id-normalized": {
+                  "value": "10.1088/1402-4896/adc6d1",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1088/1402-4896/adc6d1"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1088/1402-4896/adc6d1"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2025"
+            },
+            "month": {
+              "value": "05"
+            },
+            "day": {
+              "value": "01"
+            }
+          },
+          "journal-title": {
+            "value": "Physica Scripta"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/181120897",
+          "display-index": "1"
+        },
+        {
+          "put-code": 196715181,
+          "created-date": {
+            "value": 1762951861689
+          },
+          "last-modified-date": {
+            "value": 1762951861689
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Dry turning behavior of solution heat treated cupola slag reinforced aluminum matrix composites"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1088/1402-4896/adc6d1",
+                "external-id-normalized": {
+                  "value": "10.1088/1402-4896/adc6d1",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-105002702069",
+                "external-id-normalized": {
+                  "value": "2-s2.0-105002702069",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "00318949 14024896",
+                "external-id-normalized": {
+                  "value": "0031-8949",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://www.scopus.com/inward/record.url?eid=2-s2.0-105002702069&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2025"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Physica Scripta"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/196715181",
+          "display-index": "1"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1762951861825
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1007/978-981-97-6667-3_33",
+            "external-id-normalized": {
+              "value": "10.1007/978-981-97-6667-3_33",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1007/978-981-97-6667-3_33"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85215760294",
+            "external-id-normalized": {
+              "value": "2-s2.0-85215760294",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 174713355,
+          "created-date": {
+            "value": 1735587292817
+          },
+          "last-modified-date": {
+            "value": 1735587292817
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Grey Taguchi-Based Parametric Optimization Studies on Machinability of Cupola Slag-Reinforced LM11 Matrix Composites"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/978-981-97-6667-3_33",
+                "external-id-normalized": {
+                  "value": "10.1007/978-981-97-6667-3_33",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1007/978-981-97-6667-3_33"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1007/978-981-97-6667-3_33"
+          },
+          "type": "book-chapter",
+          "publication-date": {
+            "year": {
+              "value": "2025"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": null,
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/174713355",
+          "display-index": "1"
+        },
+        {
+          "put-code": 196715184,
+          "created-date": {
+            "value": 1762951861825
+          },
+          "last-modified-date": {
+            "value": 1762951861825
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Grey Taguchi-Based Parametric Optimization Studies on Machinability of Cupola Slag-Reinforced LM11 Matrix Composites"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/978-981-97-6667-3_33",
+                "external-id-normalized": {
+                  "value": "10.1007/978-981-97-6667-3_33",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85215760294",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85215760294",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "isbn",
+                "external-id-value": "9789819766666",
+                "external-id-normalized": {
+                  "value": "9789819766666",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "21954356 21954364",
+                "external-id-normalized": {
+                  "value": "2195-4356",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://www.scopus.com/inward/record.url?eid=2-s2.0-85215760294&partnerID=MN8TOARS"
+          },
+          "type": "conference-paper",
+          "publication-date": {
+            "year": {
+              "value": "2025"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Lecture Notes in Mechanical Engineering"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/196715184",
+          "display-index": "1"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1762951861775
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1007/978-981-97-6667-3_11",
+            "external-id-normalized": {
+              "value": "10.1007/978-981-97-6667-3_11",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1007/978-981-97-6667-3_11"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85215770156",
+            "external-id-normalized": {
+              "value": "2-s2.0-85215770156",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 174713356,
+          "created-date": {
+            "value": 1735587293066
+          },
+          "last-modified-date": {
+            "value": 1735587293066
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Utilization of Cupola Slag as Fine Aggregates in Green Concrete"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/978-981-97-6667-3_11",
+                "external-id-normalized": {
+                  "value": "10.1007/978-981-97-6667-3_11",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1007/978-981-97-6667-3_11"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1007/978-981-97-6667-3_11"
+          },
+          "type": "book-chapter",
+          "publication-date": {
+            "year": {
+              "value": "2025"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": null,
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/174713356",
+          "display-index": "1"
+        },
+        {
+          "put-code": 196715183,
+          "created-date": {
+            "value": 1762951861775
+          },
+          "last-modified-date": {
+            "value": 1762951861775
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Utilization of Cupola Slag as Fine Aggregates in Green Concrete"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/978-981-97-6667-3_11",
+                "external-id-normalized": {
+                  "value": "10.1007/978-981-97-6667-3_11",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85215770156",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85215770156",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "isbn",
+                "external-id-value": "9789819766666",
+                "external-id-normalized": {
+                  "value": "9789819766666",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "21954356 21954364",
+                "external-id-normalized": {
+                  "value": "2195-4356",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://www.scopus.com/inward/record.url?eid=2-s2.0-85215770156&partnerID=MN8TOARS"
+          },
+          "type": "conference-paper",
+          "publication-date": {
+            "year": {
+              "value": "2025"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Lecture Notes in Mechanical Engineering"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/196715183",
+          "display-index": "1"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1762951861598
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1088/2053-1591/ad95e3",
+            "external-id-normalized": {
+              "value": "10.1088/2053-1591/ad95e3",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1088/2053-1591/ad95e3"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85210739776",
+            "external-id-normalized": {
+              "value": "2-s2.0-85210739776",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 172237954,
+          "created-date": {
+            "value": 1732230388004
+          },
+          "last-modified-date": {
+            "value": 1732907084330
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "A combined RSM – FEM analysis of weld quality in laser transmission welding of plastics"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1088/2053-1591/ad95e3",
+                "external-id-normalized": {
+                  "value": "10.1088/2053-1591/ad95e3",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1088/2053-1591/ad95e3"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1088/2053-1591/ad95e3"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2024"
+            },
+            "month": {
+              "value": "11"
+            },
+            "day": {
+              "value": "01"
+            }
+          },
+          "journal-title": {
+            "value": "Materials Research Express"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/172237954",
+          "display-index": "1"
+        },
+        {
+          "put-code": 196715176,
+          "created-date": {
+            "value": 1762951861598
+          },
+          "last-modified-date": {
+            "value": 1762951861598
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "A combined RSM - FEM analysis of weld quality in laser transmission welding of plastics"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1088/2053-1591/ad95e3",
+                "external-id-normalized": {
+                  "value": "10.1088/2053-1591/ad95e3",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85210739776",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85210739776",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "20531591",
+                "external-id-normalized": {
+                  "value": "2053-1591",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://www.scopus.com/inward/record.url?eid=2-s2.0-85210739776&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2024"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Materials Research Express"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/196715176",
+          "display-index": "1"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1762951861645
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1088/2631-8695/ad652f",
+            "external-id-normalized": {
+              "value": "10.1088/2631-8695/ad652f",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1088/2631-8695/ad652f"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85199672023",
+            "external-id-normalized": {
+              "value": "2-s2.0-85199672023",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 163903471,
+          "created-date": {
+            "value": 1721344374296
+          },
+          "last-modified-date": {
+            "value": 1721921614319
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Tribology of Mg-B4C nanocomposites fabricated following powder metallurgy route"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1088/2631-8695/ad652f",
+                "external-id-normalized": {
+                  "value": "10.1088/2631-8695/ad652f",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1088/2631-8695/ad652f"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1088/2631-8695/ad652f"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2024"
+            },
+            "month": {
+              "value": "09"
+            },
+            "day": {
+              "value": "01"
+            }
+          },
+          "journal-title": {
+            "value": "Engineering Research Express"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/163903471",
+          "display-index": "1"
+        },
+        {
+          "put-code": 196715179,
+          "created-date": {
+            "value": 1762951861645
+          },
+          "last-modified-date": {
+            "value": 1762951861645
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Tribology of Mg-B4C nanocomposites fabricated following powder metallurgy route"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1088/2631-8695/ad652f",
+                "external-id-normalized": {
+                  "value": "10.1088/2631-8695/ad652f",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85199672023",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85199672023",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "26318695",
+                "external-id-normalized": {
+                  "value": "2631-8695",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://www.scopus.com/inward/record.url?eid=2-s2.0-85199672023&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2024"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Engineering Research Express"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/196715179",
+          "display-index": "1"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1762951861467
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1002/mawe.202300310",
+            "external-id-normalized": {
+              "value": "10.1002/mawe.202300310",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1002/mawe.202300310"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85202457322",
+            "external-id-normalized": {
+              "value": "2-s2.0-85202457322",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 166370686,
+          "created-date": {
+            "value": 1724857993657
+          },
+          "last-modified-date": {
+            "value": 1725830684106
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Enhancement of mechanical properties and machinability of aluminium composites by cupola slag reinforcements"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1002/mawe.202300310",
+                "external-id-normalized": {
+                  "value": "10.1002/mawe.202300310",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1002/mawe.202300310"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1002/mawe.202300310"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2024"
+            },
+            "month": {
+              "value": "09"
+            },
+            "day": null
+          },
+          "journal-title": {
+            "value": "Materialwissenschaft und Werkstofftechnik"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/166370686",
+          "display-index": "1"
+        },
+        {
+          "put-code": 196715173,
+          "created-date": {
+            "value": 1762951861467
+          },
+          "last-modified-date": {
+            "value": 1762951861467
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Enhancement of mechanical properties and machinability of aluminium composites by cupola slag reinforcements,Verbesserung der mechanischen Eigenschaften und Bearbeitbarkeit von Aluminiumverbundwerkstoffen durch Kupolofenschlackenverstärkungen"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1002/mawe.202300310",
+                "external-id-normalized": {
+                  "value": "10.1002/mawe.202300310",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85202457322",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85202457322",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "09335137 15214052",
+                "external-id-normalized": {
+                  "value": "0933-5137",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://www.scopus.com/inward/record.url?eid=2-s2.0-85202457322&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2024"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Materialwissenschaft Und Werkstofftechnik"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/196715173",
+          "display-index": "1"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1713671077499
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1016/j.jobe.2024.109101",
+            "external-id-normalized": {
+              "value": "10.1016/j.jobe.2024.109101",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1016/j.jobe.2024.109101"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85188694722",
+            "external-id-normalized": {
+              "value": "2-s2.0-85188694722",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 156146760,
+          "created-date": {
+            "value": 1711315312889
+          },
+          "last-modified-date": {
+            "value": 1711315312889
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Study of durability and mechanical properties for utilization of cupola slag as a coarse aggregate in M20 grade green concrete"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1016/j.jobe.2024.109101",
+                "external-id-normalized": {
+                  "value": "10.1016/j.jobe.2024.109101",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1016/j.jobe.2024.109101"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1016/j.jobe.2024.109101"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2024"
+            },
+            "month": {
+              "value": "06"
+            },
+            "day": null
+          },
+          "journal-title": {
+            "value": "Journal of Building Engineering"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/156146760",
+          "display-index": "0"
+        },
+        {
+          "put-code": 158110522,
+          "created-date": {
+            "value": 1713671077499
+          },
+          "last-modified-date": {
+            "value": 1713671077499
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Study of durability and mechanical properties for utilization of cupola slag as a coarse aggregate in M20 grade green concrete"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1016/j.jobe.2024.109101",
+                "external-id-normalized": {
+                  "value": "10.1016/j.jobe.2024.109101",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85188694722",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85188694722",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "23527102",
+                "external-id-normalized": {
+                  "value": "2352-7102",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://www.scopus.com/inward/record.url?eid=2-s2.0-85188694722&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2024"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Journal of Building Engineering"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/158110522",
+          "display-index": "0"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1713671078043
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1007/s40430-023-04651-7",
+            "external-id-normalized": {
+              "value": "10.1007/s40430-023-04651-7",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1007/s40430-023-04651-7"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85181586726",
+            "external-id-normalized": {
+              "value": "2-s2.0-85181586726",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 150181930,
+          "created-date": {
+            "value": 1704721426298
+          },
+          "last-modified-date": {
+            "value": 1704721426298
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Exploring energy aspects and tool wear on dry turning of cupola slag-reinforced aluminium metal matrix composites"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/s40430-023-04651-7",
+                "external-id-normalized": {
+                  "value": "10.1007/s40430-023-04651-7",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1007/s40430-023-04651-7"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1007/s40430-023-04651-7"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2024"
+            },
+            "month": {
+              "value": "02"
+            },
+            "day": null
+          },
+          "journal-title": {
+            "value": "Journal of the Brazilian Society of Mechanical Sciences and Engineering"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/150181930",
+          "display-index": "0"
+        },
+        {
+          "put-code": 158110531,
+          "created-date": {
+            "value": 1713671078043
+          },
+          "last-modified-date": {
+            "value": 1713671078043
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Exploring energy aspects and tool wear on dry turning of cupola slag-reinforced aluminium metal matrix composites"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/s40430-023-04651-7",
+                "external-id-normalized": {
+                  "value": "10.1007/s40430-023-04651-7",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85181586726",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85181586726",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "18063691 16785878",
+                "external-id-normalized": {
+                  "value": "1806-3691",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://www.scopus.com/inward/record.url?eid=2-s2.0-85181586726&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2024"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Journal of the Brazilian Society of Mechanical Sciences and Engineering"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/158110531",
+          "display-index": "0"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1713671077856
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1016/j.rineng.2023.100962",
+            "external-id-normalized": {
+              "value": "10.1016/j.rineng.2023.100962",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1016/j.rineng.2023.100962"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85150353321",
+            "external-id-normalized": {
+              "value": "2-s2.0-85150353321",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 129545775,
+          "created-date": {
+            "value": 1677207117399
+          },
+          "last-modified-date": {
+            "value": 1677207117399
+          },
+          "source": {
+            "source-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "source-client-id": null,
+            "source-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Experimental investigation on feasibility of industrial waste to resource conversion for cupola slag"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1016/j.rineng.2023.100962",
+                "external-id-normalized": {
+                  "value": "10.1016/j.rineng.2023.100962",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1016/j.rineng.2023.100962"
+                },
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "2590-1230",
+                "external-id-normalized": {
+                  "value": "2590-1230",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://portal.issn.org/resource/ISSN/2590-1230"
+                },
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://dx.doi.org/10.1016/j.rineng.2023.100962"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2023"
+            },
+            "month": {
+              "value": "03"
+            },
+            "day": null
+          },
+          "journal-title": {
+            "value": "Results in Engineering"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/129545775",
+          "display-index": "1"
+        },
+        {
+          "put-code": 158110528,
+          "created-date": {
+            "value": 1713671077856
+          },
+          "last-modified-date": {
+            "value": 1713671077856
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Experimental investigation on feasibility of industrial waste to resource conversion for cupola slag"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1016/j.rineng.2023.100962",
+                "external-id-normalized": {
+                  "value": "10.1016/j.rineng.2023.100962",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85150353321",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85150353321",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "25901230",
+                "external-id-normalized": {
+                  "value": "2590-1230",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://www.scopus.com/inward/record.url?eid=2-s2.0-85150353321&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2023"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Results in Engineering"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/158110528",
+          "display-index": "0"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1713671077703
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1016/j.matpr.2023.02.080",
+            "external-id-normalized": {
+              "value": "10.1016/j.matpr.2023.02.080",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1016/j.matpr.2023.02.080"
+            },
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85148347691",
+            "external-id-normalized": {
+              "value": "2-s2.0-85148347691",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 128935741,
+          "created-date": {
+            "value": 1676569645302
+          },
+          "last-modified-date": {
+            "value": 1676569645302
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0001-9884-1913",
+              "path": "0000-0001-9884-1913",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Crossref"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Fabrication and machinability studies on cupola slag reinforced aluminium metal matrix composites using Taguchi method"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1016/j.matpr.2023.02.080",
+                "external-id-normalized": {
+                  "value": "10.1016/j.matpr.2023.02.080",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1016/j.matpr.2023.02.080"
+                },
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "https://doi.org/10.1016/j.matpr.2023.02.080"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2023"
+            },
+            "month": {
+              "value": "02"
+            },
+            "day": null
+          },
+          "journal-title": {
+            "value": "Materials Today: Proceedings"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/128935741",
+          "display-index": "0"
+        },
+        {
+          "put-code": 158110525,
+          "created-date": {
+            "value": 1713671077703
+          },
+          "last-modified-date": {
+            "value": 1713671077703
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Fabrication and machinability studies on cupola slag reinforced aluminium metal matrix composites using Taguchi method"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1016/j.matpr.2023.02.080",
+                "external-id-normalized": {
+                  "value": "10.1016/j.matpr.2023.02.080",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85148347691",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85148347691",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "22147853",
+                "external-id-normalized": {
+                  "value": "2214-7853",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://www.scopus.com/inward/record.url?eid=2-s2.0-85148347691&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2023"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Materials Today: Proceedings"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/158110525",
+          "display-index": "0"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1713671077748
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85151397789",
+            "external-id-normalized": {
+              "value": "2-s2.0-85151397789",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1016/j.matpr.2023.03.190",
+            "external-id-normalized": {
+              "value": "10.1016/j.matpr.2023.03.190",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 158110526,
+          "created-date": {
+            "value": 1713671077748
+          },
+          "last-modified-date": {
+            "value": 1713671077748
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Cupola slag as partial replacement of coarse aggregate in concrete"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1016/j.matpr.2023.03.190",
+                "external-id-normalized": {
+                  "value": "10.1016/j.matpr.2023.03.190",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85151397789",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85151397789",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "22147853",
+                "external-id-normalized": {
+                  "value": "2214-7853",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://www.scopus.com/inward/record.url?eid=2-s2.0-85151397789&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2023"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Materials Today: Proceedings"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/158110526",
+          "display-index": "0"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1713671077576
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85168700028",
+            "external-id-normalized": {
+              "value": "2-s2.0-85168700028",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1007/978-981-99-3844-5_19",
+            "external-id-normalized": {
+              "value": "10.1007/978-981-99-3844-5_19",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 158110523,
+          "created-date": {
+            "value": 1713671077576
+          },
+          "last-modified-date": {
+            "value": 1713671077576
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Fuzzy Logic-Based Model for Predicting Material Removal Rate of Machined Cupola Slag-Reinforced Aluminum Metal Matrix Composite"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/978-981-99-3844-5_19",
+                "external-id-normalized": {
+                  "value": "10.1007/978-981-99-3844-5_19",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85168700028",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85168700028",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "2662317X 26623161",
+                "external-id-normalized": {
+                  "value": "2662-317X",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://www.scopus.com/inward/record.url?eid=2-s2.0-85168700028&partnerID=MN8TOARS"
+          },
+          "type": "book-chapter",
+          "publication-date": {
+            "year": {
+              "value": "2023"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Springer Proceedings in Materials"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/158110523",
+          "display-index": "0"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1713671077923
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85175366725",
+            "external-id-normalized": {
+              "value": "2-s2.0-85175366725",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1016/j.mtcomm.2023.107414",
+            "external-id-normalized": {
+              "value": "10.1016/j.mtcomm.2023.107414",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 158110529,
+          "created-date": {
+            "value": 1713671077923
+          },
+          "last-modified-date": {
+            "value": 1713671077923
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Machinability of cupola slag incorporated LM11 matrix composites in turning: Surface roughness and MRR analysis"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1016/j.mtcomm.2023.107414",
+                "external-id-normalized": {
+                  "value": "10.1016/j.mtcomm.2023.107414",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85175366725",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85175366725",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "23524928",
+                "external-id-normalized": {
+                  "value": "2352-4928",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://www.scopus.com/inward/record.url?eid=2-s2.0-85175366725&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2023"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Materials Today Communications"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/158110529",
+          "display-index": "0"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1662008530938
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1142/s2251237322500046",
+            "external-id-normalized": {
+              "value": "10.1142/s2251237322500046",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1142/s2251237322500046"
+            },
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 118243166,
+          "created-date": {
+            "value": 1662008530938
+          },
+          "last-modified-date": {
+            "value": 1662008530938
+          },
+          "source": {
+            "source-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "source-client-id": null,
+            "source-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Mathematical Modelling and Optimization of Corrosion Rate of Coatings Using RSM and Particle Swarm Optimization Algorithm"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1142/s2251237322500046",
+                "external-id-normalized": {
+                  "value": "10.1142/s2251237322500046",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1142/s2251237322500046"
+                },
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "2251-2373",
+                "external-id-normalized": {
+                  "value": "2251-2373",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://portal.issn.org/resource/ISSN/2251-2373"
+                },
+                "external-id-relationship": "part-of"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "2251-2381",
+                "external-id-normalized": {
+                  "value": "2251-2381",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://portal.issn.org/resource/ISSN/2251-2381"
+                },
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://dx.doi.org/10.1142/s2251237322500046"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2022"
+            },
+            "month": {
+              "value": "08"
+            },
+            "day": {
+              "value": "18"
+            }
+          },
+          "journal-title": {
+            "value": "Journal of Molecular and Engineering Materials"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/118243166",
+          "display-index": "1"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1713671077808
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85130142881",
+            "external-id-normalized": {
+              "value": "2-s2.0-85130142881",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1007/s13762-022-04257-x",
+            "external-id-normalized": {
+              "value": "10.1007/s13762-022-04257-x",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1007/s13762-022-04257-x"
+            },
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 118243136,
+          "created-date": {
+            "value": 1662008483813
+          },
+          "last-modified-date": {
+            "value": 1662008483813
+          },
+          "source": {
+            "source-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "source-client-id": null,
+            "source-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Scope for cupola slag reuse in construction: a sustainable green solution"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/s13762-022-04257-x",
+                "external-id-normalized": {
+                  "value": "10.1007/s13762-022-04257-x",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1007/s13762-022-04257-x"
+                },
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "1735-1472",
+                "external-id-normalized": {
+                  "value": "1735-1472",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://portal.issn.org/resource/ISSN/1735-1472"
+                },
+                "external-id-relationship": "part-of"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "1735-2630",
+                "external-id-normalized": {
+                  "value": "1735-2630",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://portal.issn.org/resource/ISSN/1735-2630"
+                },
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://dx.doi.org/10.1007/s13762-022-04257-x"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2022"
+            },
+            "month": {
+              "value": "05"
+            },
+            "day": {
+              "value": "16"
+            }
+          },
+          "journal-title": {
+            "value": "International Journal of Environmental Science and Technology"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/118243136",
+          "display-index": "1"
+        },
+        {
+          "put-code": 158110527,
+          "created-date": {
+            "value": 1713671077808
+          },
+          "last-modified-date": {
+            "value": 1713671077808
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Scope for cupola slag reuse in construction: a sustainable green solution"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/s13762-022-04257-x",
+                "external-id-normalized": {
+                  "value": "10.1007/s13762-022-04257-x",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85130142881",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85130142881",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "17352630 17351472",
+                "external-id-normalized": {
+                  "value": "1735-2630",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://www.scopus.com/inward/record.url?eid=2-s2.0-85130142881&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2023"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "International Journal of Environmental Science and Technology"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/158110527",
+          "display-index": "0"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1713671077449
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85138172500",
+            "external-id-normalized": {
+              "value": "2-s2.0-85138172500",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 158110521,
+          "created-date": {
+            "value": 1713671077449
+          },
+          "last-modified-date": {
+            "value": 1713671077449
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "EXPERIMENTAL INVESTIGATION AND OPTIMIZATION OF MRR IN μ-ECDM PROCESS BY TAGUCHI, RSM, PSO AND ANN"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85138172500",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85138172500",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "25870009 0858849X",
+                "external-id-normalized": {
+                  "value": "2587-0009",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://www.scopus.com/inward/record.url?eid=2-s2.0-85138172500&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2022"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Suranaree Journal of Science and Technology"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/158110521",
+          "display-index": "0"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1789412646511
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85151231631",
+            "external-id-normalized": {
+              "value": "2-s2.0-85151231631",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "isbn",
+            "external-id-value": "9780128232910",
+            "external-id-normalized": {
+              "value": "9780128232910",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 111520797,
+          "created-date": {
+            "value": 1650091545808
+          },
+          "last-modified-date": {
+            "value": 1789412646511
+          },
+          "source": {
+            "source-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "source-client-id": null,
+            "source-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Testing and Characterization of Fiber Reinforced Epoxy and Polymer Composite"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1016/B978-0-12-820352-1.00207-8",
+                "external-id-normalized": {
+                  "value": "10.1016/b978-0-12-820352-1.00207-8",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85151231631",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85151231631",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "isbn",
+                "external-id-value": "9780128232910",
+                "external-id-normalized": {
+                  "value": "9780128232910",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://dx.doi.org/10.1016/b978-0-12-820352-1.00207-8"
+          },
+          "type": "book-chapter",
+          "publication-date": {
+            "year": {
+              "value": "2022"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Reference Module in Materials Science and Materials Engineering"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/111520797",
+          "display-index": "1"
+        },
+        {
+          "put-code": 158110520,
+          "created-date": {
+            "value": 1713671077448
+          },
+          "last-modified-date": {
+            "value": 1713671077448
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Testing and Characterization of Fiber Reinforced Epoxy and Polymer Composite"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1016/B978-0-12-820352-1.00207-8",
+                "external-id-normalized": {
+                  "value": "10.1016/b978-0-12-820352-1.00207-8",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85151231631",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85151231631",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "isbn",
+                "external-id-value": "9780128232910",
+                "external-id-normalized": {
+                  "value": "9780128232910",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://www.scopus.com/inward/record.url?eid=2-s2.0-85151231631&partnerID=MN8TOARS"
+          },
+          "type": "book-chapter",
+          "publication-date": {
+            "year": {
+              "value": "2022"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "Encyclopedia of Materials: Plastics and Polymers"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/158110520",
+          "display-index": "0"
+        }
+      ]
+    },
+    {
+      "last-modified-date": {
+        "value": 1713671077640
+      },
+      "external-ids": {
+        "external-id": [
+          {
+            "external-id-type": "eid",
+            "external-id-value": "2-s2.0-85111302522",
+            "external-id-normalized": {
+              "value": "2-s2.0-85111302522",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": null,
+            "external-id-relationship": "self"
+          },
+          {
+            "external-id-type": "doi",
+            "external-id-value": "10.1007/s13762-021-03574-x",
+            "external-id-normalized": {
+              "value": "10.1007/s13762-021-03574-x",
+              "transient": true
+            },
+            "external-id-normalized-error": null,
+            "external-id-url": {
+              "value": "https://doi.org/10.1007/s13762-021-03574-x"
+            },
+            "external-id-relationship": "self"
+          }
+        ]
+      },
+      "work-summary": [
+        {
+          "put-code": 98050376,
+          "created-date": {
+            "value": 1628093044171
+          },
+          "last-modified-date": {
+            "value": 1628093044171
+          },
+          "source": {
+            "source-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "source-client-id": null,
+            "source-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            },
+            "assertion-origin-orcid": null,
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": null
+          },
+          "title": {
+            "title": {
+              "value": "Cupola slag reutilization for sustainable waste management: review and economic analysis"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/s13762-021-03574-x",
+                "external-id-normalized": {
+                  "value": "10.1007/s13762-021-03574-x",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://doi.org/10.1007/s13762-021-03574-x"
+                },
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "1735-1472",
+                "external-id-normalized": {
+                  "value": "1735-1472",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://portal.issn.org/resource/ISSN/1735-1472"
+                },
+                "external-id-relationship": "part-of"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "1735-2630",
+                "external-id-normalized": {
+                  "value": "1735-2630",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": {
+                  "value": "https://portal.issn.org/resource/ISSN/1735-2630"
+                },
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://dx.doi.org/10.1007/s13762-021-03574-x"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2021"
+            },
+            "month": {
+              "value": "07"
+            },
+            "day": {
+              "value": "26"
+            }
+          },
+          "journal-title": {
+            "value": "International Journal of Environmental Science and Technology"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/98050376",
+          "display-index": "1"
+        },
+        {
+          "put-code": 158110524,
+          "created-date": {
+            "value": 1713671077640
+          },
+          "last-modified-date": {
+            "value": 1713671077640
+          },
+          "source": {
+            "source-orcid": null,
+            "source-client-id": {
+              "uri": "https://orcid.org/client/0000-0002-5982-8983",
+              "path": "0000-0002-5982-8983",
+              "host": "orcid.org"
+            },
+            "source-name": {
+              "value": "Scopus - Elsevier"
+            },
+            "assertion-origin-orcid": {
+              "uri": "https://orcid.org/0000-0002-3579-9161",
+              "path": "0000-0002-3579-9161",
+              "host": "orcid.org"
+            },
+            "assertion-origin-client-id": null,
+            "assertion-origin-name": {
+              "value": "Dr. Soumyabrata Chakravarty"
+            }
+          },
+          "title": {
+            "title": {
+              "value": "Cupola slag reutilization for sustainable waste management: review and economic analysis"
+            },
+            "subtitle": null,
+            "translated-title": null
+          },
+          "external-ids": {
+            "external-id": [
+              {
+                "external-id-type": "doi",
+                "external-id-value": "10.1007/s13762-021-03574-x",
+                "external-id-normalized": {
+                  "value": "10.1007/s13762-021-03574-x",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "eid",
+                "external-id-value": "2-s2.0-85111302522",
+                "external-id-normalized": {
+                  "value": "2-s2.0-85111302522",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "self"
+              },
+              {
+                "external-id-type": "issn",
+                "external-id-value": "17352630 17351472",
+                "external-id-normalized": {
+                  "value": "1735-2630",
+                  "transient": true
+                },
+                "external-id-normalized-error": null,
+                "external-id-url": null,
+                "external-id-relationship": "part-of"
+              }
+            ]
+          },
+          "url": {
+            "value": "http://www.scopus.com/inward/record.url?eid=2-s2.0-85111302522&partnerID=MN8TOARS"
+          },
+          "type": "journal-article",
+          "publication-date": {
+            "year": {
+              "value": "2023"
+            },
+            "month": null,
+            "day": null
+          },
+          "journal-title": {
+            "value": "International Journal of Environmental Science and Technology"
+          },
+          "visibility": "public",
+          "path": "/0000-0002-3579-9161/work/158110524",
+          "display-index": "0"
+        }
+      ]
+    }
+  ],
+  "path": "/0000-0002-3579-9161/works"
+}
