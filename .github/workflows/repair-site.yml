@@ -48,12 +48,11 @@ jobs:
               return s
 
           def clean_dois(s):
-              # DOI links contain only the DOI URL; no arrows or other text.
               s = re.sub(r'(href="https://doi\.org/[^" ]+?)[\s]*(?:↗|→|←)*"', r'\1"', s)
-              # DOI display text is exactly "DOI: <identifier>".
               s = re.sub(r'(>DOI:\s*10\.[^<\s]+?)(?:\s*(?:↗|→|←))+\s*</a>', r'\1</a>', s)
               return s
 
+          # Main site repairs and CV download button.
           p = Path('index.html')
           s = clean(p.read_text(encoding='utf-8'))
           s = clean_dois(s)
@@ -61,21 +60,29 @@ jobs:
           old_style = 'style="background-image: url(&quot;assets/hero-banner.png&quot;); background-size: cover; background-position: center center;"'
           new_style = 'style="background-image: url(&quot;assets/hero-banner.png?v=3&quot;); background-size: cover; background-position: center center;"'
           s = s.replace(old_style, new_style)
+          s = s.replace('</style></head><body>', '.cv-download{display:inline-flex;align-items:center;gap:8px;margin-top:12px;padding:9px 14px;border-radius:8px;background:var(--teal);color:#fff;font-size:.78rem;font-weight:800;text-decoration:none;box-shadow:0 3px 12px rgba(15,124,130,.18)}.cv-download:hover{background:var(--navy);color:#fff;text-decoration:none}</style></head><body>', 1)
+          profile_anchor = '<div class="affiliation">Brainware University, Kolkata, India</div>'
+          profile_button = profile_anchor + '<a class="cv-download" href="assets/Soumyabrata_Chakravarty_Academic_CV.pdf" download="Soumyabrata_Chakravarty_Academic_CV.pdf" target="_blank">Download CV (PDF)</a>'
+          s = s.replace(profile_anchor, profile_button, 1)
           p.write_text(s, encoding='utf-8')
 
+          # Admin: add CV PDF upload/replace control and wire it into Save & Publish.
           a = Path('admin.html')
           s = clean(a.read_text(encoding='utf-8'))
           s = s.replace(
-              "html=atob(x.content.replace(/\\n/g,''));",
-              "html=new TextDecoder('utf-8').decode(Uint8Array.from(atob(x.content.replace(/\\n/g,'')),c=>c.charCodeAt(0)));"
+              '<div class="field full"><label>Current banner path</label><input id="bannerPath" placeholder="assets/hero-banner.png"></div>',
+              '<div class="field full"><label>Current banner path</label><input id="bannerPath" placeholder="assets/hero-banner.png"></div><div class="field full"><label>CV PDF</label><input id="cvFile" type="file" accept="application/pdf"><div class="small">Upload or replace the professional CV PDF used by the Download CV button.</div><div class="row"><input id="cvPath" value="assets/Soumyabrata_Chakravarty_Academic_CV.pdf" placeholder="assets/Soumyabrata_Chakravarty_Academic_CV.pdf"><a id="cvPreview" class="btn secondary" href="assets/Soumyabrata_Chakravarty_Academic_CV.pdf" target="_blank" style="display:none">Open current CV</a></div></div>',
+              1
           )
           s = s.replace(
-              "new Date(Math.min(...years)).getTime()",
-              "new Date(Math.min(...years),0,1).getTime()"
+              "let hero=doc.querySelector('.hero');setVal('bannerPath',hero?.getAttribute('data-banner')||'');",
+              "let hero=doc.querySelector('.hero');setVal('bannerPath',hero?.getAttribute('data-banner')||'');let cv=doc.querySelector('a.cv-download');setVal('cvPath',cv?.getAttribute('href')||'assets/Soumyabrata_Chakravarty_Academic_CV.pdf');if(cv){$('cvPreview').href=cv.getAttribute('href');$('cvPreview').style.display='inline-flex'}",
+              1
           )
           s = s.replace(
-              "h.style.backgroundImage=`url(\"${bp.replace(/\"/g,'&quot;')}\")`",
-              "h.style.backgroundImage=`url(\"${bp.replace(/\"/g,'&quot;')}?v=${Date.now()}\")`"
+              "async function saveSite(){try{",
+              "async function saveSite(){try{const cvFile=$('cvFile').files[0];let cvPath=$('cvPath').value.trim()||'assets/Soumyabrata_Chakravarty_Academic_CV.pdf';if(cvFile){if(!cvFile.name.toLowerCase().endsWith('.pdf'))throw Error('CV must be a PDF file.');saveStatus('Uploading CV PDF…');await uploadImage(cvFile,cvPath)}",
+              1
           )
           a.write_text(s, encoding='utf-8')
           PY
@@ -84,7 +91,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html admin.html
-          git diff --cached --quiet || (git commit -m 'fix: keep DOI text and links clean' && git push)
+          git diff --cached --quiet || (git commit -m 'feat: add CV PDF download and admin upload' && git push)
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload repaired site
