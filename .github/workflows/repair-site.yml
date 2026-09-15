@@ -47,9 +47,16 @@ jobs:
                       break
               return s
 
+          def clean_dois(s):
+              # DOI links contain only the DOI URL; no arrows or other text.
+              s = re.sub(r'(href="https://doi\.org/[^" ]+?)[\s]*(?:↗|→|←)*"', r'\1"', s)
+              # DOI display text is exactly "DOI: <identifier>".
+              s = re.sub(r'(>DOI:\s*10\.[^<\s]+?)(?:\s*(?:↗|→|←))+\s*</a>', r'\1</a>', s)
+              return s
+
           p = Path('index.html')
           s = clean(p.read_text(encoding='utf-8'))
-          s = re.sub(r'(href="https://doi\\.org/[^" ]+?)(?:\\s*[\u2197\u2192\u2190])?"', r'\1"', s)
+          s = clean_dois(s)
           s = re.sub(r'(<div class="metric"><b>)56\+(</b><span>Years Experience</span></div>)', r'\g<1>7+\g<2>', s)
           old_style = 'style="background-image: url(&quot;assets/hero-banner.png&quot;); background-size: cover; background-position: center center;"'
           new_style = 'style="background-image: url(&quot;assets/hero-banner.png?v=3&quot;); background-size: cover; background-position: center center;"'
@@ -77,7 +84,7 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html admin.html
-          git diff --cached --quiet || (git commit -m 'fix: clean copyright mojibake' && git push)
+          git diff --cached --quiet || (git commit -m 'fix: keep DOI text and links clean' && git push)
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload repaired site
