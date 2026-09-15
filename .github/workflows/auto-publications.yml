@@ -124,7 +124,7 @@ jobs:
                   out += '<span class="badge">Book Chapter</span>'
               if w['doi']:
                   d = html.escape(w['doi'])
-                  out += f'<a class="doi" href="https://doi.org/{d}" target="_blank">DOI: {d} ↗</a>'
+                  out += f'<a class="doi" href="https://doi.org/{d}" target="_blank">DOI: {d}</a>'
               return out + '</div>'
 
           journal_cards = ''.join(card(w) for w in journal_list) or '<div class="pub"><div class="pm">No journal articles were returned by the public ORCID record.</div></div>'
@@ -166,6 +166,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No website changes detected.'
           else
-            git commit -m 'fix: include all five book chapters'
+            git commit -m 'fix: show clean DOI links'
             git push
           fi
