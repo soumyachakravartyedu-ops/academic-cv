@@ -44,7 +44,6 @@ jobs:
               summaries = group.get('work-summary') or []
               if not summaries:
                   continue
-              # Prefer a public summary with the most complete metadata.
               candidates = [w for w in summaries if (w.get('visibility') or 'public') == 'public'] or summaries
               w = max(candidates, key=lambda x: len(((x.get('journal-title') or {}).get('value')) or ''))
               title = ((w.get('title') or {}).get('title') or {}).get('value') or 'Untitled work'
@@ -63,7 +62,6 @@ jobs:
                   if (ext.get('external-id-type') or '').lower() == 'doi':
                       doi = (ext.get('external-id-value') or '').strip()
                       break
-              # Suranaree article: intentionally no DOI display.
               if 'experimental investigation and optimization of mrr in' in title.lower() and 'μ-ecdm' in title.lower():
                   doi = ''
               works.append({
@@ -76,7 +74,6 @@ jobs:
                   return re.sub(r'[^a-z0-9]', '', w['doi'].lower())
               return re.sub(r'[^a-z0-9]', '', w['title'].lower())
 
-          # Deduplicate each work category. ORCID can contain multiple assertions for one work.
           journals = {}
           chapters = {}
           for w in works:
@@ -85,8 +82,6 @@ jobs:
               elif w['type'] == 'book-chapter':
                   chapters.setdefault(key(w), w)
 
-          # If ORCID contains the same work in both categories, keep it only in the journal section
-          # when the journal-article record exists. This prevents repeated journal/chapter entries.
           journal_keys = set(journals)
           chapters = {k: w for k, w in chapters.items() if k not in journal_keys}
 
@@ -147,7 +142,6 @@ jobs:
                   raise SystemExit('Publications section closing tag not found')
               text = text[:a] + publication_section + text[b + len('</section>'):]
 
-          # Replace the complete book-chapter section with the ORCID book-chapter list.
           a = text.find('<section class="sec" id="chapters">')
           if a == -1:
               raise SystemExit('Book Chapters section not found')
@@ -161,6 +155,14 @@ jobs:
               f'<div class="pubs">{chapter_cards}</div></div></section>'
           )
           text = text[:a] + chapter_section + text[b:]
+
+          # Keep the Book Chapters counter synchronized with the exact number of visible chapter cards.
+          text = re.sub(
+              r'<div class="metric"><b>\d+</b><span>Book Chapters</span></div>',
+              f'<div class="metric"><b>{len(chapter_list)}</b><span>Book Chapters</span></div>',
+              text,
+              count=1
+          )
 
           # Ensure there is only one publications section and one chapter section.
           for section_id in ('publications', 'chapters'):
@@ -178,9 +180,6 @@ jobs:
           p.write_text(text, encoding='utf-8')
           print('Journal articles shown:', len(journal_list))
           print('Book chapters shown:', len(chapter_list))
-          print('Journal/chapter overlap removed:', len(set(journals) & set(json.loads('{}'))))
-          for w in journal_list:
-              print('JOURNAL:', w['title'])
           for w in chapter_list:
               print('CHAPTER:', w['title'])
           PY
@@ -193,6 +192,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No website changes detected.'
           else
-            git commit -m 'fix: separate all journal articles from book chapters'
+            git commit -m 'fix: sync book chapter counter with visible chapters'
             git push
           fi
