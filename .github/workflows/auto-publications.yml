@@ -36,9 +36,6 @@ jobs:
 
           data = json.loads(Path('/tmp/orcid-works.json').read_text(encoding='utf-8'))
           works = []
-
-          # Verified book-chapter DOIs from the user's ORCID record.
-          # Explicit classification protects against inconsistent ORCID work-type assertions.
           verified_chapter_dois = {
               '10.1016/b9780128203521002078',
               '10.1007/9789819938445_19',
@@ -46,19 +43,18 @@ jobs:
               '10.1007/9789819766673_11',
               '10.1007/9789819766673_33',
           }
-
-          # ORCID currently omits two of the verified chapter records from its public works response.
-          # These fallback records keep the website complete while ORCID remains the primary source.
           verified_chapter_metadata = {
               '10.1007/9789819766673_11': {
                   'title': 'Utilization of Cupola Slag as Fine Aggregates in Green Concrete',
                   'journal': 'Advances in Materials, Manufacturing and Design',
                   'year': '2024',
+                  'doi': '10.1007/978-981-97-6667-3_11',
               },
               '10.1007/9789819766673_33': {
                   'title': 'Grey Taguchi-Based Parametric Optimization Studies on Machinability of Cupola Slag-Reinforced LM11 Matrix Composites',
                   'journal': 'Advances in Materials, Manufacturing and Design',
                   'year': '2024',
+                  'doi': '10.1007/978-981-97-6667-3_33',
               },
           }
 
@@ -87,14 +83,10 @@ jobs:
                   if (ext.get('external-id-type') or '').lower() == 'doi':
                       doi = (ext.get('external-id-value') or '').strip()
                       break
-
               if normalize_doi(doi) in verified_chapter_dois:
                   work_type = 'book-chapter'
-
-              # Suranaree article: intentionally no DOI display.
               if 'experimental investigation and optimization of mrr in' in title.lower() and 'μ-ecdm' in title.lower():
                   doi = ''
-
               works.append({'title': title.strip(), 'type': work_type, 'journal': journal.strip(), 'year': str(year), 'date': pub_date, 'doi': doi})
 
           def key(w):
@@ -107,7 +99,6 @@ jobs:
               elif w['type'] == 'book-chapter':
                   chapters.setdefault(key(w), w)
 
-          # Add verified chapter records missing from the public ORCID response.
           for doi_key, meta in verified_chapter_metadata.items():
               if doi_key not in chapters:
                   chapters[doi_key] = {
@@ -116,14 +107,12 @@ jobs:
                       'journal': meta['journal'],
                       'year': meta['year'],
                       'date': date(int(meta['year']), 12, 1),
-                      'doi': doi_key,
+                      'doi': meta['doi'],
                   }
 
-          # Never allow a verified chapter DOI to remain in the journal section.
           journals = {k: w for k, w in journals.items() if k not in verified_chapter_dois}
           journal_keys = set(journals)
           chapters = {k: w for k, w in chapters.items() if k not in journal_keys or k in verified_chapter_dois}
-
           journal_list = sorted(journals.values(), key=lambda w: w['date'], reverse=True)
           chapter_list = sorted(chapters.values(), key=lambda w: w['date'], reverse=True)
 
@@ -135,26 +124,22 @@ jobs:
                   out += '<span class="badge">Book Chapter</span>'
               if w['doi']:
                   d = html.escape(w['doi'])
-                  out += f'<br><a class="doi" href="https://doi.org/{d}" target="_blank">DOI: {d} ↗</a>'
+                  out += f'<a class="doi" href="https://doi.org/{d}" target="_blank">DOI: {d} ↗</a>'
               return out + '</div>'
 
           journal_cards = ''.join(card(w) for w in journal_list) or '<div class="pub"><div class="pm">No journal articles were returned by the public ORCID record.</div></div>'
           chapter_cards = ''.join(card(w, True) for w in chapter_list) or '<div class="pub"><div class="pm">No book chapters were returned by the public ORCID record.</div></div>'
-
           p = Path('index.html')
           text = p.read_text(encoding='utf-8')
           updated = date.today().strftime('%d %B %Y')
-
-          publication_section = ('<!-- AUTO-PUBLICATIONS-START -->\n<section class="sec" id="publications">\n<div class="wrap">\n<h2>Journal Publications <span style="font-size:.7em;color:var(--muted);font-weight:500">(auto-updated)</span></h2>\n'
+          publication_section = ('<!-- AUTO-PUBLICATIONS-START -->\n<section class="sec" id="publications">\n<div class="wrap">\n<h2 class="section-title">Journal Publications <span style="font-size:.7em;color:var(--muted);font-weight:500">(auto-updated)</span></h2>\n'
               f'<p style="color:var(--muted);font-size:.85rem">Automatically synchronized from the public ORCID record · Last checked {updated}</p>\n<div class="pubs">{journal_cards}</div>\n</div>\n</section>\n<!-- AUTO-PUBLICATIONS-END -->')
-
           start_marker, end_marker = '<!-- AUTO-PUBLICATIONS-START -->', '<!-- AUTO-PUBLICATIONS-END -->'
           if start_marker in text and end_marker in text:
               a, b = text.index(start_marker), text.index(end_marker) + len(end_marker)
               text = text[:a] + publication_section + text[b:]
           else:
               raise SystemExit('Automatic publications markers not found')
-
           a = text.find('<section class="sec" id="chapters">')
           if a == -1:
               raise SystemExit('Book Chapters section not found')
@@ -162,20 +147,15 @@ jobs:
           if b == -1:
               raise SystemExit('Book Chapters section closing tag not found')
           b += len('</section>')
-          chapter_section = ('<section class="sec" id="chapters"><div class="wrap"><h2>Book Chapters</h2>'
+          chapter_section = ('<section class="sec" id="chapters"><div class="wrap"><h2 class="section-title">Book Chapters</h2>'
               '<p class="note">Automatically synchronized from the public ORCID record.</p>'
               f'<div class="pubs">{chapter_cards}</div></div></section>')
           text = text[:a] + chapter_section + text[b:]
-
-          # Keep the counter exactly equal to the visible chapter cards.
           text = re.sub(r'<div class="metric"><b>\d+</b><span>Book Chapters</span></div>',
                         f'<div class="metric"><b>{len(chapter_list)}</b><span>Book Chapters</span></div>', text, count=1)
-
           p.write_text(text, encoding='utf-8')
           print('Journal articles shown:', len(journal_list))
           print('Book chapters shown:', len(chapter_list))
-          for w in chapter_list:
-              print('CHAPTER:', w['title'], '| DOI:', w['doi'])
           PY
 
       - name: Commit updated website
