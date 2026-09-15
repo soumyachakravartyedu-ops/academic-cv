@@ -1,0 +1,55 @@
+name: Remove unverified Suranaree DOI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-suranaree-doi.yml'
+      - 'index.html'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  clean:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Remove Suranaree DOI
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          title = 'Experimental investigation and optimization of MRR in μ-ECDM process by Taguchi, RSM, PSO and ANN'
+          pos = s.lower().find(title.lower())
+          if pos == -1:
+              print('Suranaree article not found; no change needed.')
+          else:
+              card_start = s.rfind('<div class="pub">', 0, pos)
+              card_end = s.find('</div>', pos)
+              if card_start == -1:
+                  raise SystemExit('Could not locate publication card')
+              # Remove every DOI link inside the publication card before its closing card boundary.
+              segment = s[card_start:card_end + 6]
+              cleaned = re.sub(r'<br>\s*<a class="doi"[^>]*>.*?</a>', '', segment, flags=re.I|re.S)
+              cleaned = re.sub(r'<a class="doi"[^>]*>.*?</a>', '', cleaned, flags=re.I|re.S)
+              if cleaned != segment:
+                  s = s[:card_start] + cleaned + s[card_end + 6:]
+                  p.write_text(s, encoding='utf-8')
+                  print('Removed Suranaree DOI link from index.html')
+              else:
+                  print('No DOI link found in Suranaree card; no change needed.')
+          PY
+
+      - name: Commit cleanup
+        run: |
+          git config user.name 'Academic Profile Sync Bot'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html
+          git diff --cached --quiet || git commit -m 'Remove unverified Suranaree DOI from profile'
+          git push
