@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Repair UTF-8 and admin decoder
+      - name: Repair UTF-8, admin decoder and banner cache
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -26,11 +26,13 @@ jobs:
           for a,b in fixes.items(): s=s.replace(a,b)
           s=re.sub(r'(href="https://doi\.org/[^" ]+) [↗]"',r'\1"',s)
           s=re.sub(r'<div class="metric"><b>56\+</b><span>Years Experience</span></div>', '<div class="metric"><b>7+</b><span>Years Experience</span></div>', s)
+          s=s.replace("background-image:url('assets/hero-banner.png')", "background-image:url('assets/hero-banner.png?v=2')")
           p.write_text(s,encoding='utf-8')
           a=Path('admin.html')
           s=a.read_text(encoding='utf-8')
           s=s.replace("html=atob(x.content.replace(/\\n/g,''));", "html=new TextDecoder('utf-8').decode(Uint8Array.from(atob(x.content.replace(/\\n/g,'')),c=>c.charCodeAt(0)));" )
           s=s.replace("new Date(Math.min(...years)).getTime()", "new Date(Math.min(...years),0,1).getTime()")
+          s=s.replace("h.style.backgroundImage=`url(\"${bp.replace(/\"/g,'&quot;')}\")`", "h.style.backgroundImage=`url(\"${bp.replace(/\"/g,'&quot;')}?v=${Date.now()}\")`")
           a.write_text(s,encoding='utf-8')
           PY
       - name: Commit repair
@@ -38,4 +40,4 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html admin.html
-          git diff --cached --quiet || (git commit -m 'fix: repair UTF-8 and admin publishing' && git push)
+          git diff --cached --quiet || (git commit -m 'fix: repair UTF-8 and banner cache' && git push)
