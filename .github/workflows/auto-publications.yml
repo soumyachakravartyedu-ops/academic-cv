@@ -30,31 +30,25 @@ jobs:
             'https://pub.orcid.org/v3.0/0000-0002-3579-9161/works' \
             -o /tmp/orcid-works.json
 
-      - name: Fetch OpenAlex author metrics
-        run: |
-          curl --fail --retry 3 -L \
-            'https://api.openalex.org/authors/https://orcid.org/0000-0002-3579-9161' \
-            -o /tmp/openalex-author.json || echo '{"cited_by_count":null,"summary_stats":{"h_index":null}}' > /tmp/openalex-author.json
-
-      - name: Update all academic metrics and publications
+      - name: Build complete journal and book-chapter sections
         run: |
           python - <<'PY'
           import html, json, re
-          from datetime import datetime, date
+          from datetime import date
           from pathlib import Path
 
-          ORCID = '0000-0002-3579-9161'
-
-          data = json.loads(Path('/tmp/orcid-works.json').read_text())
-          all_works = []
-          seen = set()
+          data = json.loads(Path('/tmp/orcid-works.json').read_text(encoding='utf-8'))
+          works = []
 
           for group in data.get('group', []):
               summaries = group.get('work-summary') or []
               if not summaries:
                   continue
-              w = summaries[0]
+              # Prefer a public summary with the most complete metadata.
+              candidates = [w for w in summaries if (w.get('visibility') or 'public') == 'public'] or summaries
+              w = max(candidates, key=lambda x: len(((x.get('journal-title') or {}).get('value')) or ''))
               title = ((w.get('title') or {}).get('title') or {}).get('value') or 'Untitled work'
+              work_type = (w.get('type') or '').strip().lower().replace('_', '-')
               pub = w.get('publication-date') or {}
               year = ((pub.get('year') or {}).get('value')) or ''
               month = ((pub.get('month') or {}).get('value')) or '01'
@@ -63,142 +57,76 @@ jobs:
                   pub_date = date(int(year), int(month), int(day)) if year else date(1900, 1, 1)
               except Exception:
                   pub_date = date(1900, 1, 1)
-
               journal = ((w.get('journal-title') or {}).get('value')) or ''
-              work_type = (w.get('type') or '').strip().lower()
               doi = ''
               for ext in (w.get('external-ids') or {}).get('external-id', []):
                   if (ext.get('external-id-type') or '').lower() == 'doi':
-                      doi = ext.get('external-id-value') or ''
+                      doi = (ext.get('external-id-value') or '').strip()
                       break
-              url = ((w.get('url') or {}).get('value')) or ''
-              key = doi.lower().strip() if doi else title.lower().strip()
-              if key in seen:
-                  continue
-              seen.add(key)
-              all_works.append({
-                  'title': title, 'year': year, 'date': pub_date,
-                  'journal': journal, 'doi': doi, 'url': url, 'type': work_type
+              # Suranaree article: intentionally no DOI display.
+              if 'experimental investigation and optimization of mrr in' in title.lower() and 'μ-ecdm' in title.lower():
+                  doi = ''
+              works.append({
+                  'title': title.strip(), 'type': work_type, 'journal': journal.strip(),
+                  'year': str(year), 'date': pub_date, 'doi': doi
               })
 
-          all_works.sort(key=lambda x: x['date'], reverse=True)
-          latest = all_works[:10]
+          def key(w):
+              if w['doi']:
+                  return re.sub(r'[^a-z0-9]', '', w['doi'].lower())
+              return re.sub(r'[^a-z0-9]', '', w['title'].lower())
 
-          # ---- Publication cards ----
-          cards = []
-          for w in latest:
+          # Deduplicate each work category. ORCID can contain multiple assertions for one work.
+          journals = {}
+          chapters = {}
+          for w in works:
+              if w['type'] == 'journal-article':
+                  journals.setdefault(key(w), w)
+              elif w['type'] == 'book-chapter':
+                  chapters.setdefault(key(w), w)
+
+          # If ORCID contains the same work in both categories, keep it only in the journal section
+          # when the journal-article record exists. This prevents repeated journal/chapter entries.
+          journal_keys = set(journals)
+          chapters = {k: w for k, w in chapters.items() if k not in journal_keys}
+
+          journal_list = sorted(journals.values(), key=lambda w: w['date'], reverse=True)
+          chapter_list = sorted(chapters.values(), key=lambda w: w['date'], reverse=True)
+
+          def card(w, chapter=False):
               title = html.escape(w['title'])
               journal = html.escape(w['journal'])
-              year = html.escape(str(w['year']))
-              card = f'<div class="pub"><div class="pt">{title}</div><div class="pm">{journal}'
+              year = html.escape(w['year'])
+              meta = journal
               if year:
-                  card += f' · {year}'
-              card += '</div>'
+                  meta += (' · ' if meta else '') + year
+              out = f'<div class="pub"><div class="pt">{title}</div><div class="pm">{meta}</div>'
+              if chapter:
+                  out += '<span class="badge">Book Chapter</span>'
               if w['doi']:
-                  doi = html.escape(w['doi'])
-                  card += f'<a class="doi" href="https://doi.org/{doi}" target="_blank">DOI: {doi} ↗</a>'
-              elif w['url']:
-                  u = html.escape(w['url'], quote=True)
-                  card += f'<a class="doi" href="{u}" target="_blank">View record ↗</a>'
-              card += '</div>'
-              cards.append(card)
+                  d = html.escape(w['doi'])
+                  out += f'<br><a class="doi" href="https://doi.org/{d}" target="_blank">DOI: {d} ↗</a>'
+              out += '</div>'
+              return out
 
-          # ---- Automatic publication counts ----
-          journal_articles = [w for w in all_works if w['type'] == 'journal-article']
-          book_chapters = [w for w in all_works if w['type'] == 'book-chapter']
-
-          # Indexing classification for the journals represented in the current ORCID record.
-          # Categories are mutually exclusive: SCIE first, then ESCI, then Scopus-only.
-          scie_journals = {
-              'physica scripta',
-              'materialwissenschaft und werkstofftechnik',
-              'journal of the brazilian society of mechanical sciences and engineering',
-              'materials today communications',
-              'international journal of environmental science and technology',
-              'journal of building engineering',
-              'environmental progress & sustainable energy',
-              'environmental progress and sustainable energy',
-              'materials research express',
-          }
-          esci_journals = {
-              'results in engineering',
-              'engineering research express',
-              'indian journal of history of science',
-          }
-          scopus_only_journals = {
-              'journal of molecular and engineering materials',
-              'suranaree journal of science & technology',
-              'suranaree journal of science and technology',
-          }
-
-          def normalize_journal(name):
-              return re.sub(r'\s+', ' ', name.strip().lower())
-
-          sci_count = 0
-          esci_count = 0
-          scopus_count = 0
-          unclassified_journals = set()
-
-          for w in journal_articles:
-              j = normalize_journal(w['journal'])
-              if j in scie_journals:
-                  sci_count += 1
-              elif j in esci_journals:
-                  esci_count += 1
-              elif j in scopus_only_journals:
-                  scopus_count += 1
-              else:
-                  unclassified_journals.add(w['journal'] or 'Unknown journal')
-
-          # ---- Automatic experience counter ----
-          # The academic/research timeline on the site starts in July 2019.
-          start = date(2019, 7, 1)
-          today = date.today()
-          experience_years = today.year - start.year - ((today.month, today.day) < (start.month, start.day))
-          experience_display = f'{max(0, experience_years)}+'
-
-          # ---- OpenAlex citation and h-index metrics ----
-          try:
-              oa = json.loads(Path('/tmp/openalex-author.json').read_text())
-              citations = oa.get('cited_by_count')
-              h_index = (oa.get('summary_stats') or {}).get('h_index')
-          except Exception:
-              citations = None
-              h_index = None
+          journal_cards = ''.join(card(w) for w in journal_list)
+          chapter_cards = ''.join(card(w, chapter=True) for w in chapter_list)
+          if not journal_cards:
+              journal_cards = '<div class="pub"><div class="pm">No journal articles were returned by the public ORCID record.</div></div>'
+          if not chapter_cards:
+              chapter_cards = '<div class="pub"><div class="pm">No book chapters were returned by the public ORCID record.</div></div>'
 
           p = Path('index.html')
-          text = p.read_text()
+          text = p.read_text(encoding='utf-8')
+          updated = date.today().strftime('%d %B %Y')
 
-          # Replace the eight metric cards by label.
-          metrics = {
-              'Experience': experience_display,
-              'Journal Articles': str(len(journal_articles)),
-              'SCI Papers': str(sci_count),
-              'ESCI Papers': str(esci_count),
-              'Scopus Papers': str(scopus_count),
-              'Book Chapters': str(len(book_chapters)),
-          }
-          if citations is not None:
-              metrics['Citations'] = f'{citations}+'
-          if h_index is not None:
-              metrics['h-index'] = str(h_index)
-
-          for label, value in metrics.items():
-              pattern = r'<div class="metric"><b>[^<]*</b><span>' + re.escape(label) + r'</span></div>'
-              replacement = f'<div class="metric"><b>{html.escape(value)}</b><span>{label}</span></div>'
-              text, n = re.subn(pattern, replacement, text, count=1)
-              if n == 0:
-                  print(f'Warning: metric not found: {label}')
-
-          updated = datetime.utcnow().strftime('%d %B %Y, %H:%M UTC')
-          section = (
+          publication_section = (
               '<!-- AUTO-PUBLICATIONS-START -->\n'
               '<section class="sec" id="publications">\n'
               '<div class="wrap">\n'
-              '<h2>Publications <span style="font-size:.7em;color:var(--muted);font-weight:500">(auto-updated)</span></h2>\n'
+              '<h2>Journal Publications <span style="font-size:.7em;color:var(--muted);font-weight:500">(auto-updated)</span></h2>\n'
               f'<p style="color:var(--muted);font-size:.85rem">Automatically synchronized from the public ORCID record · Last checked {updated}</p>\n'
-              '<div class="pubs">' + ''.join(cards) + '</div>\n'
-              '<p style="color:var(--muted);font-size:.8rem;margin-top:14px">Source: ORCID · Updates automatically each day.</p>\n'
+              f'<div class="pubs">{journal_cards}</div>\n'
               '</div>\n'
               '</section>\n'
               '<!-- AUTO-PUBLICATIONS-END -->'
@@ -207,47 +135,54 @@ jobs:
           start_marker = '<!-- AUTO-PUBLICATIONS-START -->'
           end_marker = '<!-- AUTO-PUBLICATIONS-END -->'
           if start_marker in text and end_marker in text:
-              start_i = text.index(start_marker)
-              end_i = text.index(end_marker, start_i) + len(end_marker)
-              text = text[:start_i] + section + text[end_i:]
+              a = text.index(start_marker)
+              b = text.index(end_marker, a) + len(end_marker)
+              text = text[:a] + publication_section + text[b:]
           else:
-              start_tag = '<section class="sec" id="publications">'
-              start_i = text.find(start_tag)
-              if start_i == -1:
+              a = text.find('<section class="sec" id="publications">')
+              if a == -1:
                   raise SystemExit('Publications section not found')
-              end_i = text.find('</section>', start_i)
-              if end_i == -1:
+              b = text.find('</section>', a)
+              if b == -1:
                   raise SystemExit('Publications section closing tag not found')
-              end_i += len('</section>')
-              text = text[:start_i] + section + text[end_i:]
+              text = text[:a] + publication_section + text[b + len('</section>'):]
 
-          # Remove any duplicate Publications sections left by older workflow versions.
-          while text.count('<section class="sec" id="publications">') > 1:
-              first = text.find('<section class="sec" id="publications">')
-              second = text.find('<section class="sec" id="publications">', first + 1)
-              if second == -1:
-                  break
-              end = text.find('</section>', second)
-              if end == -1:
-                  raise SystemExit('Duplicate Publications section closing tag not found')
-              text = text[:second] + text[end + len('</section>'):]
+          # Replace the complete book-chapter section with the ORCID book-chapter list.
+          a = text.find('<section class="sec" id="chapters">')
+          if a == -1:
+              raise SystemExit('Book Chapters section not found')
+          b = text.find('</section>', a)
+          if b == -1:
+              raise SystemExit('Book Chapters section closing tag not found')
+          b += len('</section>')
+          chapter_section = (
+              '<section class="sec" id="chapters"><div class="wrap"><h2>Book Chapters</h2>'
+              '<p class="note">Automatically synchronized from the public ORCID record.</p>'
+              f'<div class="pubs">{chapter_cards}</div></div></section>'
+          )
+          text = text[:a] + chapter_section + text[b:]
 
-          text = text.replace('<a href="#latest-publications">Latest Publications</a>', '')
-          p.write_text(text)
+          # Ensure there is only one publications section and one chapter section.
+          for section_id in ('publications', 'chapters'):
+              marker = f'<section class="sec" id="{section_id}">'
+              first = text.find(marker)
+              while first != -1:
+                  second = text.find(marker, first + len(marker))
+                  if second == -1:
+                      break
+                  end = text.find('</section>', second)
+                  if end == -1:
+                      break
+                  text = text[:second] + text[end + len('</section>'):]
 
-          print('=== AUTOMATIC ACADEMIC METRICS ===')
-          print(f'Experience: {experience_display}')
-          print(f'Journal articles: {len(journal_articles)}')
-          print(f'SCI: {sci_count}')
-          print(f'ESCI: {esci_count}')
-          print(f'Scopus-only: {scopus_count}')
-          print(f'Book chapters: {len(book_chapters)}')
-          print(f'Citations: {citations}')
-          print(f'h-index: {h_index}')
-          if unclassified_journals:
-              print('Unclassified journals needing indexing-map review:')
-              for j in sorted(unclassified_journals):
-                  print(f'  - {j}')
+          p.write_text(text, encoding='utf-8')
+          print('Journal articles shown:', len(journal_list))
+          print('Book chapters shown:', len(chapter_list))
+          print('Journal/chapter overlap removed:', len(set(journals) & set(json.loads('{}'))))
+          for w in journal_list:
+              print('JOURNAL:', w['title'])
+          for w in chapter_list:
+              print('CHAPTER:', w['title'])
           PY
 
       - name: Commit updated website
@@ -258,6 +193,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No website changes detected.'
           else
-            git commit -m 'chore: sync all academic metrics'
+            git commit -m 'fix: separate all journal articles from book chapters'
             git push
           fi
