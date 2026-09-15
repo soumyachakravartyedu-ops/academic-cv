@@ -15,62 +15,61 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Repair UTF-8, years, admin decoder and banner cache
+      - name: Repair website files
         run: |
           python - <<'PY'
           from pathlib import Path
           import re
 
-          def repair_mojibake(s):
-              # Repair UTF-8 bytes that were previously decoded as Latin-1/Windows-1252.
-              fixes = {
-                  'Â·':'·', 'â':'–', 'â':'—', 'â':'‘', 'â':'’',
-                  'â':'“', 'â':'”', 'â¦':'…', 'â':'↗', 'Â ':' ',
-                  'â€™':'’', 'â€œ':'“', 'â€':'”', 'â€“':'–', 'â€”':'—',
-                  'â€¦':'…', 'â†’':'→', 'â†':'←'
+          def clean(s):
+              pairs = {
+                  '\u00c2\u00b7': '\u00b7',
+                  '\u00e2\u0080\u0093': '\u2013',
+                  '\u00e2\u0080\u0094': '\u2014',
+                  '\u00e2\u0080\u0098': '\u2018',
+                  '\u00e2\u0080\u0099': '\u2019',
+                  '\u00e2\u0080\u009c': '\u201c',
+                  '\u00e2\u0080\u009d': '\u201d',
+                  '\u00e2\u0080\u00a6': '\u2026',
+                  '\u00e2\u0086\u0097': '\u2197',
+                  '\u00c2\u00a0': ' ',
               }
               for _ in range(2):
                   old = s
-                  for a,b in fixes.items():
-                      s = s.replace(a,b)
+                  for a, b in pairs.items():
+                      s = s.replace(a, b)
                   if s == old:
                       break
               return s
 
           p = Path('index.html')
-          s = p.read_text(encoding='utf-8')
-          s = repair_mojibake(s)
-          # Never allow navigation arrows or mojibake inside DOI href URLs.
-          s = re.sub(r'(href="https://doi\.org/[^" ]+?)(?:\s*(?:↗|→|←))?"', r'\1"', s)
+          s = clean(p.read_text(encoding='utf-8'))
+          s = re.sub(r'(href="https://doi\\.org/[^" ]+?)(?:\\s*[\u2197\u2192\u2190])?"', r'\1"', s)
           s = re.sub(r'(<div class="metric"><b>)56\+(</b><span>Years Experience</span></div>)', r'\g<1>7+\g<2>', s)
-          # Force a cache-busted hero URL while retaining the clean upload path in data-banner.
-          s = re.sub(r'style="background-image:\s*url\((?:&quot;|\")assets/hero-banner\.png(?:\?v=\d+)?(?:&quot;|\")\);?[^\"]*"', 'style="background-image: url(&quot;assets/hero-banner.png?v=3&quot;); background-size: cover; background-position: center center;"', s)
-          if 'data-banner="assets/hero-banner.png"' in s and 'assets/hero-banner.png?v=3' not in s:
-              s = s.replace('style="background-image:', 'style="background-image:', 1)
+          old_style = 'style="background-image: url(&quot;assets/hero-banner.png&quot;); background-size: cover; background-position: center center;"'
+          new_style = 'style="background-image: url(&quot;assets/hero-banner.png?v=3&quot;); background-size: cover; background-position: center center;"'
+          s = s.replace(old_style, new_style)
           p.write_text(s, encoding='utf-8')
 
           a = Path('admin.html')
-          s = a.read_text(encoding='utf-8')
-          # Decode GitHub base64 as UTF-8 instead of Latin-1.
+          s = clean(a.read_text(encoding='utf-8'))
           s = s.replace(
               "html=atob(x.content.replace(/\\n/g,''));",
               "html=new TextDecoder('utf-8').decode(Uint8Array.from(atob(x.content.replace(/\\n/g,'')),c=>c.charCodeAt(0)));"
           )
-          # Correct year arithmetic: Date(year) is milliseconds, not calendar year.
           s = s.replace(
               "new Date(Math.min(...years)).getTime()",
               "new Date(Math.min(...years),0,1).getTime()"
           )
-          # Always cache-bust the selected banner preview/background.
           s = s.replace(
               "h.style.backgroundImage=`url(\"${bp.replace(/\"/g,'&quot;')}\")`",
               "h.style.backgroundImage=`url(\"${bp.replace(/\"/g,'&quot;')}?v=${Date.now()}\")`"
           )
           a.write_text(s, encoding='utf-8')
           PY
-      - name: Commit repair
+      - name: Commit repaired files
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add index.html admin.html
-          git diff --cached --quiet || (git commit -m 'fix: repair UTF-8 and banner cache' && git push)
+          git diff --cached --quiet || (git commit -m 'fix: repair website encoding and admin decoder' && git push)
