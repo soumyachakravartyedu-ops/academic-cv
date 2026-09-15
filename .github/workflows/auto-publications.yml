@@ -25,10 +25,7 @@ jobs:
 
       - name: Fetch public ORCID works
         run: |
-          curl --fail --retry 3 -L \
-            -H 'Accept: application/json' \
-            'https://pub.orcid.org/v3.0/0000-0002-3579-9161/works' \
-            -o /tmp/orcid-works.json
+          curl --fail --retry 3 -L -H 'Accept: application/json' 'https://pub.orcid.org/v3.0/0000-0002-3579-9161/works' -o /tmp/orcid-works.json
 
       - name: Build complete journal and book-chapter sections
         run: |
@@ -39,6 +36,19 @@ jobs:
 
           data = json.loads(Path('/tmp/orcid-works.json').read_text(encoding='utf-8'))
           works = []
+
+          # Verified book-chapter DOIs from the user's ORCID record.
+          # Explicit classification protects against inconsistent ORCID work-type assertions.
+          verified_chapter_dois = {
+              '10.1016/b9780128203521002078',
+              '10.1007/9789819938445_19',
+              '10.1201/9781003499688-6',
+              '10.1007/9789819766673_11',
+              '10.1007/9789819766673_33',
+          }
+
+          def normalize_doi(value):
+              return re.sub(r'[^a-z0-9]', '', (value or '').lower())
 
           for group in data.get('group', []):
               summaries = group.get('work-summary') or []
@@ -62,85 +72,61 @@ jobs:
                   if (ext.get('external-id-type') or '').lower() == 'doi':
                       doi = (ext.get('external-id-value') or '').strip()
                       break
+
+              if normalize_doi(doi) in verified_chapter_dois:
+                  work_type = 'book-chapter'
+
+              # Suranaree article: intentionally no DOI display.
               if 'experimental investigation and optimization of mrr in' in title.lower() and 'μ-ecdm' in title.lower():
                   doi = ''
-              works.append({
-                  'title': title.strip(), 'type': work_type, 'journal': journal.strip(),
-                  'year': str(year), 'date': pub_date, 'doi': doi
-              })
+
+              works.append({'title': title.strip(), 'type': work_type, 'journal': journal.strip(), 'year': str(year), 'date': pub_date, 'doi': doi})
 
           def key(w):
-              if w['doi']:
-                  return re.sub(r'[^a-z0-9]', '', w['doi'].lower())
-              return re.sub(r'[^a-z0-9]', '', w['title'].lower())
+              return normalize_doi(w['doi']) if w['doi'] else re.sub(r'[^a-z0-9]', '', w['title'].lower())
 
-          journals = {}
-          chapters = {}
+          journals, chapters = {}, {}
           for w in works:
               if w['type'] == 'journal-article':
                   journals.setdefault(key(w), w)
               elif w['type'] == 'book-chapter':
                   chapters.setdefault(key(w), w)
 
+          # Never allow a verified chapter DOI to remain in the journal section.
+          journals = {k: w for k, w in journals.items() if k not in verified_chapter_dois}
           journal_keys = set(journals)
-          chapters = {k: w for k, w in chapters.items() if k not in journal_keys}
+          chapters = {k: w for k, w in chapters.items() if k not in journal_keys or k in verified_chapter_dois}
 
           journal_list = sorted(journals.values(), key=lambda w: w['date'], reverse=True)
           chapter_list = sorted(chapters.values(), key=lambda w: w['date'], reverse=True)
 
           def card(w, chapter=False):
-              title = html.escape(w['title'])
-              journal = html.escape(w['journal'])
-              year = html.escape(w['year'])
-              meta = journal
-              if year:
-                  meta += (' · ' if meta else '') + year
+              title, journal, year = html.escape(w['title']), html.escape(w['journal']), html.escape(w['year'])
+              meta = journal + ((' · ' if journal else '') + year if year else '')
               out = f'<div class="pub"><div class="pt">{title}</div><div class="pm">{meta}</div>'
               if chapter:
                   out += '<span class="badge">Book Chapter</span>'
               if w['doi']:
                   d = html.escape(w['doi'])
                   out += f'<br><a class="doi" href="https://doi.org/{d}" target="_blank">DOI: {d} ↗</a>'
-              out += '</div>'
-              return out
+              return out + '</div>'
 
-          journal_cards = ''.join(card(w) for w in journal_list)
-          chapter_cards = ''.join(card(w, chapter=True) for w in chapter_list)
-          if not journal_cards:
-              journal_cards = '<div class="pub"><div class="pm">No journal articles were returned by the public ORCID record.</div></div>'
-          if not chapter_cards:
-              chapter_cards = '<div class="pub"><div class="pm">No book chapters were returned by the public ORCID record.</div></div>'
+          journal_cards = ''.join(card(w) for w in journal_list) or '<div class="pub"><div class="pm">No journal articles were returned by the public ORCID record.</div></div>'
+          chapter_cards = ''.join(card(w, True) for w in chapter_list) or '<div class="pub"><div class="pm">No book chapters were returned by the public ORCID record.</div></div>'
 
           p = Path('index.html')
           text = p.read_text(encoding='utf-8')
           updated = date.today().strftime('%d %B %Y')
 
-          publication_section = (
-              '<!-- AUTO-PUBLICATIONS-START -->\n'
-              '<section class="sec" id="publications">\n'
-              '<div class="wrap">\n'
-              '<h2>Journal Publications <span style="font-size:.7em;color:var(--muted);font-weight:500">(auto-updated)</span></h2>\n'
-              f'<p style="color:var(--muted);font-size:.85rem">Automatically synchronized from the public ORCID record · Last checked {updated}</p>\n'
-              f'<div class="pubs">{journal_cards}</div>\n'
-              '</div>\n'
-              '</section>\n'
-              '<!-- AUTO-PUBLICATIONS-END -->'
-          )
+          publication_section = ('<!-- AUTO-PUBLICATIONS-START -->\n<section class="sec" id="publications">\n<div class="wrap">\n<h2>Journal Publications <span style="font-size:.7em;color:var(--muted);font-weight:500">(auto-updated)</span></h2>\n'
+              f'<p style="color:var(--muted);font-size:.85rem">Automatically synchronized from the public ORCID record · Last checked {updated}</p>\n<div class="pubs">{journal_cards}</div>\n</div>\n</section>\n<!-- AUTO-PUBLICATIONS-END -->')
 
-          start_marker = '<!-- AUTO-PUBLICATIONS-START -->'
-          end_marker = '<!-- AUTO-PUBLICATIONS-END -->'
+          start_marker, end_marker = '<!-- AUTO-PUBLICATIONS-START -->', '<!-- AUTO-PUBLICATIONS-END -->'
           if start_marker in text and end_marker in text:
-              a = text.index(start_marker)
-              b = text.index(end_marker, a) + len(end_marker)
+              a, b = text.index(start_marker), text.index(end_marker) + len(end_marker)
               text = text[:a] + publication_section + text[b:]
           else:
-              a = text.find('<section class="sec" id="publications">')
-              if a == -1:
-                  raise SystemExit('Publications section not found')
-              b = text.find('</section>', a)
-              if b == -1:
-                  raise SystemExit('Publications section closing tag not found')
-              text = text[:a] + publication_section + text[b + len('</section>'):]
+              raise SystemExit('Automatic publications markers not found')
 
           a = text.find('<section class="sec" id="chapters">')
           if a == -1:
@@ -149,39 +135,20 @@ jobs:
           if b == -1:
               raise SystemExit('Book Chapters section closing tag not found')
           b += len('</section>')
-          chapter_section = (
-              '<section class="sec" id="chapters"><div class="wrap"><h2>Book Chapters</h2>'
+          chapter_section = ('<section class="sec" id="chapters"><div class="wrap"><h2>Book Chapters</h2>'
               '<p class="note">Automatically synchronized from the public ORCID record.</p>'
-              f'<div class="pubs">{chapter_cards}</div></div></section>'
-          )
+              f'<div class="pubs">{chapter_cards}</div></div></section>')
           text = text[:a] + chapter_section + text[b:]
 
-          # Keep the Book Chapters counter synchronized with the exact number of visible chapter cards.
-          text = re.sub(
-              r'<div class="metric"><b>\d+</b><span>Book Chapters</span></div>',
-              f'<div class="metric"><b>{len(chapter_list)}</b><span>Book Chapters</span></div>',
-              text,
-              count=1
-          )
-
-          # Ensure there is only one publications section and one chapter section.
-          for section_id in ('publications', 'chapters'):
-              marker = f'<section class="sec" id="{section_id}">'
-              first = text.find(marker)
-              while first != -1:
-                  second = text.find(marker, first + len(marker))
-                  if second == -1:
-                      break
-                  end = text.find('</section>', second)
-                  if end == -1:
-                      break
-                  text = text[:second] + text[end + len('</section>'):]
+          # Keep the counter exactly equal to the visible chapter cards.
+          text = re.sub(r'<div class="metric"><b>\d+</b><span>Book Chapters</span></div>',
+                        f'<div class="metric"><b>{len(chapter_list)}</b><span>Book Chapters</span></div>', text, count=1)
 
           p.write_text(text, encoding='utf-8')
           print('Journal articles shown:', len(journal_list))
           print('Book chapters shown:', len(chapter_list))
           for w in chapter_list:
-              print('CHAPTER:', w['title'])
+              print('CHAPTER:', w['title'], '| DOI:', w['doi'])
           PY
 
       - name: Commit updated website
@@ -192,6 +159,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No website changes detected.'
           else
-            git commit -m 'fix: sync book chapter counter with visible chapters'
+            git commit -m 'fix: include all five ORCID book chapters'
             git push
           fi
