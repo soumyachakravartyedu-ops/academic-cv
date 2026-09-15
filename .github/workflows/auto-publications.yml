@@ -47,6 +47,21 @@ jobs:
               '10.1007/9789819766673_33',
           }
 
+          # ORCID currently omits two of the verified chapter records from its public works response.
+          # These fallback records keep the website complete while ORCID remains the primary source.
+          verified_chapter_metadata = {
+              '10.1007/9789819766673_11': {
+                  'title': 'Utilization of Cupola Slag as Fine Aggregates in Green Concrete',
+                  'journal': 'Advances in Materials, Manufacturing and Design',
+                  'year': '2024',
+              },
+              '10.1007/9789819766673_33': {
+                  'title': 'Grey Taguchi-Based Parametric Optimization Studies on Machinability of Cupola Slag-Reinforced LM11 Matrix Composites',
+                  'journal': 'Advances in Materials, Manufacturing and Design',
+                  'year': '2024',
+              },
+          }
+
           def normalize_doi(value):
               return re.sub(r'[^a-z0-9]', '', (value or '').lower())
 
@@ -91,6 +106,18 @@ jobs:
                   journals.setdefault(key(w), w)
               elif w['type'] == 'book-chapter':
                   chapters.setdefault(key(w), w)
+
+          # Add verified chapter records missing from the public ORCID response.
+          for doi_key, meta in verified_chapter_metadata.items():
+              if doi_key not in chapters:
+                  chapters[doi_key] = {
+                      'title': meta['title'],
+                      'type': 'book-chapter',
+                      'journal': meta['journal'],
+                      'year': meta['year'],
+                      'date': date(int(meta['year']), 12, 1),
+                      'doi': doi_key,
+                  }
 
           # Never allow a verified chapter DOI to remain in the journal section.
           journals = {k: w for k, w in journals.items() if k not in verified_chapter_dois}
@@ -159,6 +186,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No website changes detected.'
           else
-            git commit -m 'fix: include all five ORCID book chapters'
+            git commit -m 'fix: include all five book chapters'
             git push
           fi
