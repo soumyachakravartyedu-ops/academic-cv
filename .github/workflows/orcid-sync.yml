@@ -49,9 +49,6 @@ jobs:
           try:
               with urllib.request.urlopen(req, timeout=30) as r:
                   text = r.read().decode('utf-8', errors='ignore')
-              # Google Scholar profile statistics are rendered in the citation table.
-              m = re.search(r'<td class="gsc_rsb_std">([0-9,]+)</td>\s*<td class="gsc_rsb_std">([0-9,]+)</td>', text)
-              # More robust label-based extraction for the public profile table.
               labels = re.findall(r'<td class="gsc_rsb_std">([0-9,]+)</td>', text)
               if len(labels) >= 3:
                   metrics['citations'] = int(labels[0].replace(',', ''))
@@ -60,7 +57,6 @@ jobs:
                   raise RuntimeError('Google Scholar metrics not found in returned page')
           except Exception as e:
               print('Google Scholar fetch failed:', e)
-              # Preserve the previous successful values if Google Scholar temporarily rate-limits the runner.
               old = Path('scholar-metrics.json')
               if old.exists():
                   metrics = json.loads(old.read_text(encoding='utf-8'))
@@ -70,11 +66,12 @@ jobs:
           print('Google Scholar metrics:', metrics)
           PY
 
-      - name: Update website counters and book chapters
+      - name: Update website counters, chapters and DOI display
         run: |
           python - <<'PY'
           import json, html, re
           from pathlib import Path
+          from datetime import date
 
           data = json.loads(Path('orcid-works.json').read_text(encoding='utf-8'))
           scholar = json.loads(Path('scholar-metrics.json').read_text(encoding='utf-8'))
@@ -110,7 +107,7 @@ jobs:
 
           page = Path('index.html').read_text(encoding='utf-8')
 
-          # Replace the book-chapter section from ORCID.
+          # Replace the book-chapter section from ORCID. DOI is shown only when ORCID supplies one.
           start = page.find('<section class="sec" id="chapters">')
           end = page.find('</section>', start)
           if start != -1 and end != -1:
@@ -119,12 +116,27 @@ jobs:
               page = page[:start] + new_section + page[end:]
 
           # Merge SCI/SCIE/ESCI/Scopus into one non-overlapping indexed-publication count.
-          # The curated journal list currently contains 15 indexed journal articles.
           journal_count = sum(1 for w in works if w['type'] in {'journal-article','journal_article'})
           if journal_count == 0:
               journal_count = 15
           page = re.sub(r'<div class="metric"><b>[^<]+</b><span>Journal Articles</span></div>', f'<div class="metric"><b>{journal_count}</b><span>Indexed Journal Articles (SCI/ESCI/Scopus)</span></div>', page, count=1)
           page = re.sub(r'<div class="metric"><b>[^<]+</b><span>SCI / SCIE</span></div>\s*<div class="metric"><b>[^<]+</b><span>ESCI</span></div>\s*<div class="metric"><b>[^<]+</b><span>Scopus-only</span></div>', '', page, count=1)
+
+          # Experience counter is calculated automatically from the earliest start date in the Experience section.
+          exp_start = page.find('<section class="sec" id="experience">')
+          exp_end = page.find('</section>', exp_start)
+          exp_section = page[exp_start:exp_end] if exp_start != -1 and exp_end != -1 else ''
+          month_map = {'Jan':1,'Feb':2,'Mar':3,'Apr':4,'May':5,'Jun':6,'Jul':7,'Aug':8,'Sep':9,'Oct':10,'Nov':11,'Dec':12}
+          starts = []
+          for m in re.finditer(r'([A-Z][a-z]{2})\s+(\d{4})\s*[–-]\s*(?:Present|[A-Z][a-z]{2}\s+\d{4})', exp_section):
+              starts.append((int(m.group(2)), month_map[m.group(1)]))
+          if starts:
+              sy, sm = min(starts)
+              today = date.today()
+              years = today.year - sy - ((today.month, today.day) < (sm, 1))
+              experience_display = f'{years}+' if years >= 1 else '1+'
+              page = re.sub(r'<div class="metric"><b>[^<]+</b><span>Years Experience</span></div>', f'<div class="metric"><b>{experience_display}</b><span>Years Experience</span></div>', page, count=1)
+              print('Experience start:', f'{sy:04d}-{sm:02d}', 'Experience counter:', experience_display)
 
           # Google Scholar is the source for citation and h-index metrics.
           citations = scholar.get('citations')
@@ -134,7 +146,13 @@ jobs:
           if hindex is not None:
               page = re.sub(r'(<div class="metric"><b>)[^<]+(</b><span>h-index</span>)', rf'\g<1>{hindex}\g<2>', page, count=1)
 
-          page = page.replace('Each journal publication below is linked directly to its DOI record. Indexing labels have been checked at journal level using SCImago/Scopus and publisher or Web of Science evidence where available.', 'Each journal publication below is linked directly to its DOI record. Indexing is represented as a combined SCI/SCIE/ESCI/Scopus coverage count; journal-level badges remain shown on individual records.')
+          # Remove any DOI display from the Suranaree article because no DOI is established for it.
+          page = re.sub(r'(<div class="pub">\s*<div class="pt">[^<]*Experimental investigation and optimization of MRR in μ-ECDM process by Taguchi, RSM, PSO and ANN\.?[^<]*</div>.*?</div>)(?:\s*<br><a class="doi".*?</a>)', r'\1', page, flags=re.I|re.S)
+
+          # General rule: never render a DOI label/link when no DOI value exists.
+          page = re.sub(r'<br><a class="doi"[^>]*>DOI:\s*(?:↗)?</a>', '', page, flags=re.I)
+
+          page = page.replace('Each journal publication below is linked directly to its DOI record. Indexing is represented as a combined SCI/SCIE/ESCI/Scopus coverage count; journal-level badges remain shown on individual records.', 'Each journal publication is linked directly to its DOI when a DOI is available. Publications without an established DOI intentionally show no DOI text or placeholder.')
           Path('index.html').write_text(page, encoding='utf-8')
           print('Indexed journal articles:', journal_count)
           print('Book chapters:', len(chapters))
@@ -147,5 +165,5 @@ jobs:
           git config user.name 'Academic Profile Sync Bot'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add orcid-works.json scholar-metrics.json index.html
-          git diff --cached --quiet || git commit -m 'Auto-update ORCID and Google Scholar metrics'
+          git diff --cached --quiet || git commit -m 'Auto-update academic profile counters and DOI display'
           git push
